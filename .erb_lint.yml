@@ -1,0 +1,19 @@
+glob: "**/*.{html,text,js,turbo_stream}{+*,}.erb"
+exclude:
+  - "**/vendor/**/*"
+  - "**/node_modules/**/*"
+linters:
+  SelfClosingTag:
+    enabled: false
+  AllowedScriptType:
+    enabled: true
+    allowed_types:
+      - "text/javascript"
+      - "module"
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+      Layout/TrailingEmptyLines:
+        Enabled: false
