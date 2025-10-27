@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_27_090703) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_27_222627) do
+  create_table "record_titles", force: :cascade do |t|
+    t.integer "column_number", null: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "records", force: :cascade do |t|
     t.datetime "recorded_at", null: false
     t.float "column_0"
