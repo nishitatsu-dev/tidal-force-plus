@@ -1,0 +1,2 @@
+module RecordTitlesHelper
+end

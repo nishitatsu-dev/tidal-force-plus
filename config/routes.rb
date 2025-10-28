@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "home#new"
   resources :home, only: [ :index, :new ]
   get "about/index"
+  resources :record_titles
   resources :records
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
