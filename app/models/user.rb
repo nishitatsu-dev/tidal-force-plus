@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
   #      , :omniauthable, omniauth_providers: [ :google_oauth2 ]
+
+  has_many :records, dependent: :destroy
 end
