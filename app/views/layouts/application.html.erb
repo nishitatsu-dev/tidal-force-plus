@@ -23,10 +23,13 @@
   </head>
 
   <body>
-    <p class="notice bg-emerald-200"><%= notice %></p>
-    <p class="alert bg-rose-200"><%= alert %></p>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <div class="mx-auto max-w-7xl">
+      <%# <%= render "layouts/header" %>
+      <p class="notice bg-emerald-200"><%= notice %></p>
+      <p class="alert bg-rose-200"><%= alert %></p>
+      <main class="px-3 pb-2 sm:px-6 sm:pb-6 lg:px-8">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
