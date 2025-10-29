@@ -4,4 +4,12 @@ class HomeController < ApplicationController
 
   def new
   end
+
+  def memo_index
+    render :index
+  end
+
+  def memo_new
+    render :new
+  end
 end
