@@ -5,6 +5,12 @@
 </div>
 <%= render "layouts/outline" %>
 
+<p class="mb-8 text-center bg-emerald-200 sm:py-4">
+  フォームに入力すると、<br />
+  グラフ・計算結果<%= user_signed_in? ? "・メモ機能" : "" %><br />
+  が表示されます。
+</p>
+
 <aside id="terms_and_privacy" class="mt-8">
   <%= render "layouts/terms_and_privacy" %>
 </aside>
