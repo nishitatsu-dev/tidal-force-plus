@@ -1,0 +1,166 @@
+<script type="module">
+  import * as echarts from "echarts";
+
+  var chartDom = document.getElementById('chart_vertical');
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  let moonVerticals = [];
+  let sunVerticals = [];
+  let moonAndSunVerticals = [];
+  let jupiterDistances = [];
+  let xAxisData = [];
+  const firstDay = sessionStorage.getItem('firstDay');
+  if (firstDay !== null) {
+    moonVerticals = sessionStorage.getItem('moonVerticals').split(',').map(Number);
+    sunVerticals = sessionStorage.getItem('sunVerticals').split(',').map(Number);
+    moonAndSunVerticals = sessionStorage.getItem('moonAndSunVerticals').split(',').map(Number);
+    jupiterDistances = sessionStorage.getItem('jupiterDistances').split(',').map(Number);
+    xAxisData = sessionStorage.getItem('xAxisData').split(',');
+  } else {
+    moonVerticals = [0];
+    sunVerticals = [0];
+    moonAndSunVerticals = [0];
+    jupiterDistances = [0];
+    xAxisData = ["No data"];
+  }
+
+  option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
+    },
+    legend: {
+      data: ['Moon', 'Sun', 'Moon + Sun', 'Jupiter (Distance)'],
+    },
+    grid: {
+      left: '12%',
+      top: '20%',
+      right: '12%',
+      bottom: '21%',
+    },
+    dataZoom: [
+      {
+        type: 'inside',
+        start: 0,
+        end: 50
+      },
+      {
+        type: 'slider',
+        start: 0,
+        end: 50
+      }
+    ],
+    xAxis: [
+      {
+        position: 'bottom',
+        type: 'category',
+        boundaryGap: false,
+        axisLine: { onZero: false },
+        axisTick: { inside: true },
+        data: xAxisData
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        name: 'Tidal Force [µN/kg]',
+        nameTextStyle: {
+          align: 'center',
+          padding: [0, 0, 0, 60],
+        },
+        max: 2,
+        min: -1,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: 'rgb(55, 100, 255)'
+          }
+        }
+      },
+      {
+        type: 'value',
+        name: 'Distance [au]',
+        position: 'right',
+        max: 6.8,
+        min: 3.8,
+        alignTicks: true,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: 'rgb(0, 138, 39)'
+          }
+        }
+      }
+    ],
+    series: [
+      {
+        name: 'Moon',
+        type: 'line',
+        color: 'rgb(255, 191, 0)',
+        emphasis: {
+          focus: 'series'
+        },
+        data: moonVerticals
+      },
+      {
+        name: 'Sun',
+        type: 'line',
+        color: 'rgb(250, 0, 135)',
+        emphasis: {
+          focus: 'series'
+        },
+        data: sunVerticals
+      },
+      {
+        name: 'Moon + Sun',
+        type: 'line',
+        color: 'rgb(111, 144, 255)',
+        lineStyle: {
+          width: 0
+        },
+        symbol: 'none',
+        areaStyle: {
+          opacity: 0.8,
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(55, 162, 255)'
+            },
+            {
+              offset: 1,
+              color: 'rgb(116, 21, 219)'
+            }
+          ])
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: moonAndSunVerticals
+      },
+      {
+        name: 'Jupiter (Distance)',
+        type: 'line',
+        yAxisIndex: 1,
+        color: 'rgb(128, 255, 165)',
+        symbol: 'roundRect',
+        lineStyle: {
+          color: 'rgb(0, 209, 59)',
+          opacity: 0.8
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: jupiterDistances
+      }
+    ]
+  };
+
+  option && myChart.setOption(option);
+
+</script>

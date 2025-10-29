@@ -1,0 +1,162 @@
+<script type="module">
+  import * as echarts from 'echarts';
+
+  var chartDom = document.getElementById('chart_horizontal');
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  let xAxisData = [];
+  let moonLateralStrengths = [];
+  let moonLateralAzimuths = [];
+  let sunLateralStrengths = [];
+  let sunLateralAzimuths = [];
+  const firstDay = sessionStorage.getItem('firstDay');
+  if (firstDay !== null) {
+    xAxisData = sessionStorage.getItem('xAxisData').split(',');
+    moonLateralStrengths = sessionStorage.getItem('moonLateralStrengths').split(',').map(Number);
+    moonLateralAzimuths = sessionStorage.getItem('moonLateralAzimuths').split(',').map(Number);
+    sunLateralStrengths = sessionStorage.getItem('sunLateralStrengths').split(',').map(Number);
+    sunLateralAzimuths = sessionStorage.getItem('sunLateralAzimuths').split(',').map(Number);
+  } else {
+    xAxisData = ["No data"];
+    moonLateralStrengths = [0];
+    moonLateralAzimuths = [0];
+    sunLateralStrengths = [0];
+    sunLateralAzimuths = [0];
+  }
+
+  option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      animation: false
+    }
+  },
+  legend: {
+    data: ['Moon', 'Sun', 'Moon (Azimuth)', 'Sun (Azimuth)'],
+  },
+  axisPointer: {
+    link: [
+      {
+        xAxisIndex: 'all'
+      }
+    ]
+  },
+  grid: [
+    {
+      left: '12%',
+      top: '20%',
+      right: '12%',
+      height: '23%',
+    },
+    {
+      left: '12%',
+      right: '12%',
+      bottom: '22%',
+      height: '23%',
+    }
+  ],
+  dataZoom: [
+    {
+      show: true,
+      realtime: true,
+      start: 0,
+      end: 50,
+      xAxisIndex: [0, 1]
+    },
+    {
+      type: 'inside',
+      realtime: true,
+      start: 0,
+      end: 50,
+      xAxisIndex: [0, 1]
+    }
+  ],
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      axisLine: { onZero: true },
+      axisTick: { inside: true },
+      axisLabel: { show: false },
+      data: xAxisData
+    },
+    {
+      gridIndex: 1,
+      type: 'category',
+      boundaryGap: false,
+      axisLine: { onZero: true },
+      axisTick: { inside: true },
+      data: xAxisData
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: 'Tidal Force [µN/kg]',
+      nameTextStyle: {
+        align: 'center',
+        padding: [0, 0, 0, 60],
+      },
+      max: 1.5,
+      min: 0,
+      axisLine: {
+        show: true,
+      }
+    },
+    {
+      gridIndex: 1,
+      type: 'value',
+      name: 'Azimuth [deg]',
+      nameTextStyle: {
+        align: 'center',
+        padding: [0, 0, 0, 20],
+      },
+      max: 360,
+      min: 0,
+      axisLine: {
+        show: true,
+      },
+      axisTick: { customValues: [90, 180, 270, 360] },
+      axisLabel: { customValues: [0, 90, 180, 270, 360] }
+    }
+  ],
+  series: [
+    {
+      name: 'Moon',
+      type: 'line',
+      color: 'rgb(255, 191, 0)',
+      data: moonLateralStrengths
+    },
+    {
+      name: 'Sun',
+      type: 'line',
+      color: 'rgb(250, 0, 135)',
+      data: sunLateralStrengths
+    },
+    {
+      name: 'Moon (Azimuth)',
+      type: 'line',
+      xAxisIndex: 1,
+      yAxisIndex: 1,
+      color: 'rgb(255, 191, 0)',
+      symbol: 'diamond',
+      symbolSize: 6,
+      data: moonLateralAzimuths
+    },
+    {
+      name: 'Sun (Azimuth)',
+      type: 'line',
+      xAxisIndex: 1,
+      yAxisIndex: 1,
+      color: 'rgb(250, 0, 135)',
+      symbol: 'diamond',
+      symbolSize: 6,
+      data: sunLateralAzimuths
+    }
+  ]
+};
+
+option && myChart.setOption(option);
+
+</script>
