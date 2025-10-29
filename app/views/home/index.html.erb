@@ -26,6 +26,17 @@
     </div>
   </section>
 
+  <%# <%= tag.div data: { controller: "calc-results-page #{ user_signed_in? ? "records-page" : "" }" }, class: "max-w-270 mx-auto text-center" do %>
+    <div class="inline-flex max-w-full overflow-x-auto">
+      <section class="flex-1 overflow-x-auto">
+        <h2 class="sticky left-0 text-nowrap">【計算結果】</h2>
+        <div>
+          <%= render "calc_results" %>
+        </div>
+      </section>
+
+    </div>
+
 <aside id="terms_and_privacy" class="mt-8">
   <%= render "layouts/terms_and_privacy" %>
 </aside>
