@@ -36,6 +36,4 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
-# Ignore Kamal files.
-/config/deploy*.yml
-/.kamal
+/.kamal/_*
