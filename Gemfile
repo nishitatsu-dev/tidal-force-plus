@@ -58,6 +58,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # 追加したもの
+  gem "dotenv-rails", "~> 3.1", ">= 3.1.8"
 end
 
 group :development do
