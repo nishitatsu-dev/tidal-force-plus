@@ -16,8 +16,8 @@ class User < ApplicationRecord
 
     unless user
       user = User.create(email: data["email"], password: Devise.friendly_token[0, 20])
-      user.skip_confirmation!
     end
+    user.skip_confirmation!
     user
   end
 end
