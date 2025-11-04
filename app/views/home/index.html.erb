@@ -60,6 +60,30 @@
         </div>
       </section>
       <% if user_signed_in? %>
+        <section class="flex-3 overflow-x-auto border-l md:flex-4 lg:flex-5 xl:flex-6">
+          <h2 class="sticky left-0">【測定結果のメモ】</h2>
+          <div class="h-261">
+            <div class="flex h-20 divide-x-tr">
+              <div class="grid grid-rows-3 flex-none items-center justify-center border-b-thead">
+                <div class="row-span-2 row-start-2 w-time">time</div>
+              </div>
+              <div class="grid grid-cols-6 w-records flex-none gap-0.5 pl-0.5 border-b-thead divide-x-tr">
+                <%= render partial: "record_titles/record_title", collection: @record_titles %>
+              </div>
+              <div class="flex">
+                <div class="grid grid-rows-3 flex-none justify-center items-center border-b-thead">
+                  <div class="row-span-2 row-start-2 w-memo">memo</div>
+                </div>
+                <div class="w-record-links border-b-thead"></div>
+              </div>
+            </div>
+            <div>
+              <%# <%= turbo_frame_tag "records" do %>
+                <%# <%= render partial: "records/record", collection: @records %>
+              <%# <% end %>
+            </div>
+          </div>
+        </section>
       <% end %>
     </div>
     <div class="sticky bottom-0 bg-white">
