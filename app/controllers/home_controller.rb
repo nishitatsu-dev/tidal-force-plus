@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  # before_action :authenticate_user!, only: [ :memo_index, :memo_new ]
+  before_action :authenticate_user!, only: %i[ memo_index memo_new ]
   before_action :set_session
 
   def index
