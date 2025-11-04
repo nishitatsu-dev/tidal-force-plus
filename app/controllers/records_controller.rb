@@ -1,9 +1,10 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ index show new edit confirm_destroy ]
+  before_action :set_record, only: %i[ show edit confirm_destroy update destroy ]
 
   # GET /records or /records.json
   def index
-    @records = Record.all
+    @records = make_one_day_records
   end
 
   # GET /records/1 or /records/1.json
@@ -12,49 +13,43 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
-    @record = Record.new
+    @record_titles = make_record_titles
+    @record = Record.new(recorded_at: params[:recorded_at])
   end
 
   # GET /records/1/edit
   def edit
+    @record_titles = make_record_titles
+  end
+
+  def confirm_destroy
   end
 
   # POST /records or /records.json
   def create
-    @record = Record.new(record_params)
+    @record = current_user.records.new(record_params)
 
-    respond_to do |format|
-      if @record.save
-        format.html { redirect_to @record, notice: "Record was successfully created." }
-        format.json { render :show, status: :created, location: @record }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
-      end
+    if @record.save
+      redirect_to @record, notice: "作成に成功しました。"
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /records/1 or /records/1.json
   def update
-    respond_to do |format|
-      if @record.update(record_params)
-        format.html { redirect_to @record, notice: "Record was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @record }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
-      end
+    if @record.update(record_params)
+      redirect_to @record, notice: "更新に成功しました。", status: :see_other
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /records/1 or /records/1.json
   def destroy
+    date = @record.recorded_at.in_time_zone(session[:timezone]).strftime("%Y-%m-%d")
     @record.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to records_path, notice: "Record was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
+    redirect_to records_path(date: date), notice: "削除に成功しました。", status: :see_other
   end
 
   private

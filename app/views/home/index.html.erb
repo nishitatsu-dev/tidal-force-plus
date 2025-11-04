@@ -78,9 +78,9 @@
               </div>
             </div>
             <div>
-              <%# <%= turbo_frame_tag "records" do %>
-                <%# <%= render partial: "records/record", collection: @records %>
-              <%# <% end %>
+              <%= turbo_frame_tag "records" do %>
+                <%= render partial: "records/record", collection: @records %>
+              <% end %>
             </div>
           </div>
         </section>
@@ -89,6 +89,9 @@
     <div class="sticky bottom-0 bg-white">
       <%= render "pagination" %>
       <% if user_signed_in? %>
+        <%= form_with method: :get, data: { records_page_target: "pageForm", turbo_frame: "records" } do |f| %>
+          <%= f.hidden_field :page_id, data: { records_page_target: "pageField" } %>
+        <% end %>
       <% end %>
     </div>
   <% end %>

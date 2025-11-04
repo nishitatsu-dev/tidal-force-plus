@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "record_#{extract_date_hour(record)}" do %>
+  <%= render partial: "home/confirm_destroy", locals: { current_model: record } %>
+<% end %>
