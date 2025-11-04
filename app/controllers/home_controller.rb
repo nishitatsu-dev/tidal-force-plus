@@ -1,24 +1,21 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!, only: %i[ memo_index memo_new ]
   before_action :set_session
+  before_action :get_calc_conditions, only: %i[ index new memo_index memo_new ]
 
   def index
-    @conditions = get_calc_conditions
   end
 
   def new
-    @conditions = get_calc_conditions
   end
 
   def memo_index
-    @conditions = get_calc_conditions
     # @record_titles = make_record_titles
     # @records = make_one_day_records
     render :index
   end
 
   def memo_new
-    @conditions = get_calc_conditions
     render :new
   end
 
@@ -60,7 +57,7 @@ class HomeController < ApplicationController
   end
 
   def get_calc_conditions
-    {
+    @conditions = {
       location: session[:location],
       first_date: session[:first_date],
       last_date: session[:last_date]
