@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
 @layer components {
+  .w-time {
+    width: 72px;
+  }
+
+  .w-records {
+    width: 480px;
+  }
+
+  .w-memo {
+    width: 55svw;
+    max-width: 18rem;
+  }
+
+  .w-record-links {
+    width: 72px;
+  }
+
   .link-primary {
     color: var(--color-blue-600);
     cursor: pointer;
@@ -31,5 +48,10 @@
       border-bottom-width: 1px;
       border-color: var(--color-gray-200);
     }
+  }
+
+  .border-t-record {
+    border-top-width: 1px;
+    border-color: var(--color-gray-200);
   }
 }
