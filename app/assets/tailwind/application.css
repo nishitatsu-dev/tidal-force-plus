@@ -11,4 +11,25 @@
       }
     }
   }
+
+  .border-b-thead {
+    border-bottom-width: 2px;
+    border-color: var(--color-gray-300);
+  }
+
+  .divide-x-tr {
+    & > :not(:last-child) {
+      border-inline-start-width: 0px;
+      border-inline-end-width: 1px;
+      border-color: var(--color-gray-300);
+    }
+  }
+
+  .divide-y-tbody {
+    & > :not(:last-child) {
+      border-top-width: 0px;
+      border-bottom-width: 1px;
+      border-color: var(--color-gray-200);
+    }
+  }
 }

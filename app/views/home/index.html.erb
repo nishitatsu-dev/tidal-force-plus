@@ -30,7 +30,7 @@
   </div>
 </section>
 
-<%# <%= turbo_frame_tag "chart_and_list" do %>
+<%= turbo_frame_tag "chart_and_list" do %>
   <section class="text-center mb-6 sm:mb-10">
     <h2>
       「起潮力(垂直方向)」と「木星との距離」
@@ -51,7 +51,7 @@
     </div>
   </section>
 
-  <%# <%= tag.div data: { controller: "calc-results-page #{ user_signed_in? ? "records-page" : "" }" }, class: "max-w-270 mx-auto text-center" do %>
+  <%= tag.div data: { controller: "calc-results-page #{ user_signed_in? ? "records-page" : "" }" }, class: "max-w-270 mx-auto text-center" do %>
     <div class="inline-flex max-w-full overflow-x-auto">
       <section class="flex-1 overflow-x-auto">
         <h2 class="sticky left-0 text-nowrap">【計算結果】</h2>
@@ -59,8 +59,16 @@
           <%= render "calc_results" %>
         </div>
       </section>
-
+      <% if user_signed_in? %>
+      <% end %>
     </div>
+    <div class="sticky bottom-0 bg-white">
+      <%= render "pagination" %>
+      <% if user_signed_in? %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 
 <aside id="terms_and_privacy" class="mt-8">
   <%= render "layouts/terms_and_privacy" %>
