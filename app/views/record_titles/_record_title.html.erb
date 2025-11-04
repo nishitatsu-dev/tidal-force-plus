@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "record_title_#{record_title.column_number}" do %>
+  <div class="grid grid-rows-3 h-20 justify-start">
+    <% if record_title.id.nil? %>
+      <div class="text-left">
+        <%= link_to "編集", new_record_title_path(column_number: record_title.column_number), data: { turbo_frame: "record_title_#{record_title.column_number}" }, class: "link-primary" %>
+      </div>
+    <% else %>
+      <div class="flex w-18.5 justify-between">
+        <%= link_to "編集", edit_record_title_path(record_title), data: { turbo_frame: "record_title_#{record_title.column_number}" }, class: "link-primary" %>
+        <%= link_to "削除", confirm_destroy_record_title_path(record_title), data: { turbo_frame: "record_title_#{record_title.column_number}" }, class: "link-primary" %>
+      </div>
+    <% end %>
+    <div class="row-span-2 text-left text-wrap wrap-break-word h-12 overflow-y-auto">
+      <%= display_line_breaks record_title.title %>
+    </div>
+  </div>
+<% end %>

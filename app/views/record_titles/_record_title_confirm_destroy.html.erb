@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "record_title_#{record_title.column_number}" do %>
+  <%= render partial: "home/confirm_destroy", locals: { current_model: record_title } %>
+<% end %>
