@@ -10,8 +10,8 @@ class HomeController < ApplicationController
   end
 
   def memo_index
-    # @record_titles = make_record_titles
-    # @records = make_one_day_records
+    @record_titles = make_record_titles
+    @records = make_one_day_records
     render :index
   end
 
