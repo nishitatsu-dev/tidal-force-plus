@@ -43,10 +43,10 @@ class RecordTitlesController < ApplicationController
 
   private
   def set_record_title
-    @record_title = RecordTitle.find(params[:id])
+    @record_title = RecordTitle.find(params.expect(:id))
   end
 
   def record_title_params
-    params.require(:record_title).permit(:column_number, :title)
+    params.expect(record_title: [ :column_number, :title ])
   end
 end
