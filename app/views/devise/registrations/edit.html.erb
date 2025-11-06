@@ -3,71 +3,14 @@
   <div class="fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30"></div>
   <div class="relative z-20 w-full max-w-xs max-h-screen overflow-y-auto bg-white shadow-lg rounded-md p-5">
     <h2 class="mb-5 text-center text-2xl"><%= t(".title", resource: devise_i18n_fix_model_name_case(resource.model_name.human, i18n_key: "registrations.edit.title")) %></h2>
-    <div class="mx-2">
-      <div class="text-center mb-3">
-        <span><%= render "/devise/shared/link_omniauthable" %></span>
-      </div>
-      <p class="text-center mb-3">
-        <span>〜〜〜〜〜　または　〜〜〜〜〜</span>
-      </p>
-      <div class="mb-6">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
 
-          <div class="text-center">
-            <div class="inline-flex flex-col">
-              <div class="field flex flex-col mb-4">
-                <%= f.label :email, class: "self-start" %>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border rounded-sm" %>
-              </div>
-
-              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                <div><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></div>
-              <% end %>
-
-              <div class="field flex flex-col mb-4">
-                <%= f.label :password, class: "self-start" %> <i class="self-start">(<%= t(".leave_blank_if_you_don_t_want_to_change_it") %>)</i>
-                <%= f.password_field :password, autocomplete: "new-password", class: "border rounded-sm" %>
-                <% if @minimum_password_length %>
-                  <em class="self-start"><%= t("devise.shared.minimum_password_length", count: @minimum_password_length) %></em>
-                <% end %>
-              </div>
-
-              <div class="field flex flex-col mb-4">
-                <%= f.label :password_confirmation, class: "self-start" %>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border rounded-sm" %>
-              </div>
-
-              <div class="field flex flex-col mb-4">
-                <%= f.label :current_password, class: "self-start" %> <i class="self-start">(<%= t(".we_need_your_current_password_to_confirm_your_changes") %>)</i>
-                <%= f.password_field :current_password, autocomplete: "current-password", class: "border rounded-sm" %>
-              </div>
-
-              <div class="actions">
-                <%= f.submit t(".update"), class: "py-1.5 px-4 transition-colors bg-indigo-600 font-medium text-white w-45 shadow-xs rounded-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <hr class="mb-7">
-
-    <h3 class="mb-5 text-center text-xl"><%= t(".cancel_my_account") %></h3>
-
-    <div class="text-center mb-6">
+    <div class="mb-8 text-center">
       <div class="inline-flex flex-col">
-        <div class="mb-1">
-          <%= t(".unhappy") %>
-        </div>
         <%= button_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure"), turbo_confirm: t(".are_you_sure") }, method: :delete, class: "py-1.5 px-4 transition-colors bg-indigo-600 font-medium text-white w-45 shadow-xs rounded-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
       </div>
     </div>
 
-    <hr class="mb-7">
-
-    <div class="mx-2 text-center">
+    <div class="text-center">
       <%= link_to t("devise.shared.links.back"), :back, class: "link-primary" %>
     </div>
   </div>
