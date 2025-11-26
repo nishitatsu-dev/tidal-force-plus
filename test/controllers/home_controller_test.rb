@@ -7,7 +7,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get home_new_url
+    get new_home_url
     assert_response :success
   end
 end
