@@ -10,12 +10,12 @@
   <div class="max-w-80 mx-auto">
     <%= form_with method: :get, data: { turbo_frame: "chart_and_list", controller: "timezone session-storage" } do |f| %>
       <div class="mb-1">
-        <%= f.label :location, "表示地点：", class: "inline-block w-21" %>
+        <%= f.label :location, "地点：", class: "inline-block w-21" %>
         <%= f.select :location,
               [ [ "稚内", "WAKKANAI" ], [ "根室", "NEMURO" ], [ "小樽", "OTARU" ], [ "秋田", "AKITA" ], [ "相馬", "SOMA" ], [ "東京", "TOKYO" ], [ "富山", "TOYAMA" ], [ "名古屋", "NAGOYA" ], [ "明石", "AKASHI" ], [ "境港", "SAKAIMINATO" ], [ "土佐清水", "TOSASHIMIZU" ], [ "博多", "HAKATA" ], [ "種子島", "TANEGASHIMA" ], [ "那覇", "NAHA" ], [ "与那国島", "YONAGUNIJIMA" ], [ "父島", "CHICHIJIMA" ], [ "南鳥島", "MINAMITORISHIMA" ] ],
               { selected: @conditions[:location] }, data: { session_storage_target: "locationSelect" }, class: "w-36 py-1.5 border rounded-sm" %><br />
       </div>
-      <p>表示期間：</p>
+      <p>期間：</p>
       <div class="flex justify-between items-center mb-4">
         <%= f.date_field :first_date, data: { session_storage_target: "firstDateField" }, min: "2020-01-01", max: "2029-12-31", value: @conditions[:first_date], class: "grow-1 max-w-36 py-1.5 border rounded-sm" %>
         <span class="mx-4">〜</span>
