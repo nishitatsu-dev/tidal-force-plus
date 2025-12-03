@@ -23,18 +23,47 @@
       </div>
       <%= f.hidden_field :timezone, data: { timezone_target: "timezoneField" } %>
       <div class="flex justify-center">
-        <%= f.submit "計算実行#{ user_signed_in? ? "   &   メモ表示" : "" }", { id: "calc_button", data: { action: "click->timezone#setValue click->session-storage#setItem" },
-              class: "grow-1 #{ user_signed_in? ? "max-w-52" : "max-w-36" } py-1.5 px-4 transition-colors bg-indigo-600 font-medium text-white shadow-xs rounded-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" } %>
+        <%= f.submit "グラフ・表#{ user_signed_in? ? "（メモ）" : "" }を更新", { id: "display_button", data: { action: "click->timezone#setValue click->session-storage#setItem" },
+              class: "grow-1 #{ user_signed_in? ? "max-w-60" : "max-w-44" } py-1.5 px-4 transition-colors bg-indigo-600 font-medium text-white shadow-xs rounded-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" } %>
       </div>
     <% end %>
   </div>
 </section>
 
-<p class="mb-8 text-center bg-emerald-200 sm:py-4">
-  フォームに入力すると、<br />
-  グラフ・計算結果<%= user_signed_in? ? "・メモ機能" : "" %><br />
-  が表示されます。
-</p>
+<section class="text-center mb-6 sm:mb-10">
+  <h2>
+    「起潮力(垂直方向)」と「木星との距離」
+    <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
+  </h2>
+  <div id="chart_vertical" class="h-96 w-full">
+    <%= render "chart_vertical" %>
+  </div>
+</section>
+
+<section class="text-center mb-6">
+  <h2>
+    起潮力(水平方向) の「強さ」と「方位角（Azimuth）」
+    <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
+  </h2>
+  <div id="chart_horizontal" class="h-96 w-full">
+    <%= render "chart_horizontal" %>
+  </div>
+</section>
+
+<div class="text-center">
+  <div class="inline-flex">
+    <section class="">
+      <h2 class="text-nowrap">【計算結果】</h2>
+      <div>
+      </div>
+    </section>
+    <% if user_signed_in? %>
+      <section class="">
+        <h2 class="text-nowrap">【測定結果のメモ】</h2>
+      </section>
+    <% end %>
+  </div>
+</div>
 
 <aside id="terms_and_privacy" class="mt-8">
   <%= render "layouts/terms_and_privacy" %>
