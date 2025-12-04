@@ -41,13 +41,17 @@
 </section>
 
 <section class="text-center mb-6">
-  <h2>
-    起潮力(水平方向) の「強さ」と「方位角（Azimuth）」
-    <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
-  </h2>
-  <div id="chart_horizontal" class="h-96 w-full">
-    <%= render "chart_horizontal" %>
-  </div>
+  <details>
+    <summary>
+      <h2 class="inline">
+        起潮力(水平方向) の「強さ」と「方位角」
+        <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
+      </h2>
+    </summary>
+    <div id="chart_horizontal" class="h-96 w-full">
+      <%= render "chart_horizontal" %>
+    </div>
+  </details>
 </section>
 
 <div class="text-center">
