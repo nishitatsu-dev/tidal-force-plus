@@ -23,7 +23,7 @@
       </div>
       <%= f.hidden_field :timezone, data: { timezone_target: "timezoneField" } %>
       <div class="flex justify-center">
-        <%= f.submit "グラフ・表#{ user_signed_in? ? "（メモ）" : "" }を更新", { id: "display_button", data: { action: "click->timezone#setValue click->session-storage#setItem" },
+        <%= f.submit "グラフ・表#{ user_signed_in? ? "・メモ" : "" }を更新", { id: "display_button", data: { action: "click->timezone#setValue click->session-storage#setItem" },
               class: "grow-1 #{ user_signed_in? ? "max-w-60" : "max-w-44" } py-1.5 px-4 transition-colors bg-indigo-600 font-medium text-white shadow-xs rounded-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" } %>
       </div>
     <% end %>
@@ -32,7 +32,7 @@
 
 <%= turbo_frame_tag "chart_and_list" do %>
   <section class="text-center mb-6 sm:mb-10">
-    <h2>
+    <h2 class="text-lg font-semibold text-blue-900">
       「起潮力(垂直方向)」と「木星との距離」
       <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
     </h2>
@@ -44,7 +44,7 @@
   <section class="text-center mb-6">
     <details>
       <summary>
-        <h2 class="inline">
+        <h2 class="inline text-lg font-semibold text-blue-900">
           起潮力(水平方向) の「強さ」と「方位角」
           <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
         </h2>
@@ -61,14 +61,14 @@
   <%= tag.div data: { controller: "calc-results-page #{ user_signed_in? ? "records-page" : "" }" }, class: "max-w-270 mx-auto text-center" do %>
     <div class="inline-flex max-w-full overflow-x-auto">
       <section class="flex-1 overflow-x-auto">
-        <h2 class="sticky left-0 text-nowrap">【計算結果】</h2>
+        <h2 class="sticky left-0 text-nowrap text-lg font-semibold text-blue-900">結果一覧</h2>
         <div>
           <%= render "calc_results" %>
         </div>
       </section>
       <% if user_signed_in? %>
         <section class="flex-3 overflow-x-auto border-l md:flex-4 lg:flex-5 xl:flex-6">
-          <h2 class="sticky left-0">【測定結果のメモ】</h2>
+          <h2 class="sticky left-0 text-lg font-semibold text-blue-900">メモ</h2>
           <div class="h-261">
             <div class="flex h-20 divide-x-tr">
               <div class="grid grid-rows-3 flex-none items-center justify-center border-b-thead">
