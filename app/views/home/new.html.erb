@@ -48,6 +48,9 @@
         <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
       </h2>
     </summary>
+    <div>
+      方位角（Azimuth）は、北が0度（360度）、東が90度、南が180度、西が270度です。
+    </div>
     <div id="chart_horizontal" class="h-96 w-full">
       <%= render "chart_horizontal" %>
     </div>
