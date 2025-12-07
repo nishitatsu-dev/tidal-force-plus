@@ -37,6 +37,7 @@ export default class CalcResultsPage {
     for (let row = 0; row < HOUR_PER_DAY; row++) {
       const tr = document.createElement("tr");
       const tdTime = document.createElement("td");
+      tr.className = `${this.#setBgColor(row)}`;
       tdTime.className = "h-10";
       tdTime.textContent = TIMES[row];
       tr.appendChild(tdTime);
@@ -47,6 +48,16 @@ export default class CalcResultsPage {
       }
       this.calcResultsTbodyTarget.appendChild(tr);
     }
+  }
+
+  #setBgColor(row) {
+    if (row % 6 === 0) {
+      return "bg-stone-200";
+    } else if (row % 2 === 0) {
+      return "bg-slate-100";
+    } else {
+      return "bg-white";
+    };
   }
 
   #getCalcResults() {
