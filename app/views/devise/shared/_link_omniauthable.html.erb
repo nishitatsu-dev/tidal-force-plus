@@ -1,7 +1,7 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false } do %>
-      <%= image_tag "#{controller_name == "registrations" ? "sign_up" : "sign_in"}_#{provider}.png", alt: "#{provider}", class: "cursor-pointer" %>
+      <%= image_tag "#{controller_name == "registrations" ? "sign_up" : "sign_in"}_#{provider}.png", alt: "#{provider}", class: "h-10 cursor-pointer" %>
     <% end %>
   <% end %>
 <% end %>
