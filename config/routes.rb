@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
   get "about/index"
+  get "privacy/index"
   resources :record_titles do
     member do
       get :confirm_destroy
