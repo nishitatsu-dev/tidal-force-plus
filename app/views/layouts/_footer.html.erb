@@ -1,21 +1,16 @@
-<header>
-  <div class="relative flex h-16 items-center justify-between px-2 bg-blue-950 sm:px-3">
-    <%= tag.div class: "flex flex-1 items-center pl-2 sm:items-stretch #{ user_signed_in? ? "justify-start" : "justify-center sm:justify-start" }" do %>
-      <div class="flex shrink-0 items-center">
-        <%= link_to each_home_index_path do %>
-          <%= image_tag "logo.svg", alt: "ロゴ", class: "inline-block h-10 object-contain rounded-full bg-white cursor-pointer hover:bg-white/90" %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-      <div class="flex shrink-0 items-center">
-        <% if user_signed_in? %>
-          <%= link_to "アカウント編集", edit_user_registration_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
-          <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_confirm: "本当にログアウトしますか？" }, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
-        <% else %>
-          <%= link_to "ログイン", new_user_session_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
-        <% end %>
-      </div>
+<footer>
+  <div class="flex items-center justify-between mt-1 py-2 px-2 bg-blue-950 sm:px-3">
+    <div class="flex flex-wrap pl-2 sm:flex">
+      <%= link_to "利用規約", terms_index_path, class: "whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+      <%= link_to "プライバシーポリシー", privacy_index_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+    </div>
+    <div class="flex flex-wrap pr-2 sm:flex sm:flex-row-reverse sm:ml-6 sm:pr-0">
+      <% if user_signed_in? %>
+        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_confirm: "本当にログアウトしますか？" }, class: "whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+        <%= link_to "アカウント編集", edit_user_registration_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+      <% else %>
+        <%= link_to "ログイン", new_user_session_path, class: "whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+      <% end %>
     </div>
   </div>
-</header>
+</footer>
