@@ -4,8 +4,9 @@
   <div class="relative z-20 w-full max-w-xs max-h-screen overflow-y-auto bg-white shadow-lg rounded-md p-5">
     <h1 class="mb-5 text-center text-2xl"><%= t(".sign_in") %></h1>
     <p class="mb-5 text-center text-xs">
-      <%= link_to "利用規約とプライバシーポリシー", new_home_path(anchor: "terms_and_privacy"), class: "link-primary" %>
-      をご確認ください
+      <%= link_to "利用規約", terms_index_path, class: "link-primary" %>
+      、
+      <%= link_to "プライバシーポリシー", privacy_index_path, class: "link-primary" %>
     </p>
     <div class="mb-8 text-center">
       <span><%= render "/devise/shared/link_omniauthable" %></span>
