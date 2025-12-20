@@ -60,14 +60,14 @@
   <%= tag.div data: { controller: "calc-results-page #{ user_signed_in? ? "records-page" : "" }" }, class: "max-w-270 mx-auto text-center" do %>
     <div class="inline-flex max-w-full overflow-x-auto">
       <section class="flex-1 overflow-x-auto">
-        <h2 class="sticky left-0 text-nowrap text-lg font-semibold text-blue-900">結果一覧</h2>
+        <h2 class="sticky left-0 mb-1 text-nowrap text-lg font-semibold text-blue-900">結果一覧</h2>
         <div>
           <%= render "calc_results" %>
         </div>
       </section>
       <% if user_signed_in? %>
         <section class="flex-3 overflow-x-auto border-l md:flex-4 lg:flex-5 xl:flex-6">
-          <h2 class="sticky left-0 text-lg font-semibold text-blue-900">メモ</h2>
+          <h2 class="sticky left-0 mb-1 text-lg font-semibold text-blue-900">メモ</h2>
           <div class="h-261">
             <div class="flex h-20 divide-x-tr">
               <div class="grid grid-rows-3 flex-none items-center justify-center border-b-thead">
