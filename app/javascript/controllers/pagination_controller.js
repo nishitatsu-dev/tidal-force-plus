@@ -57,7 +57,7 @@ export default class extends Controller {
 
   #getColor(i, pageId, pageDays) {
     const currentColor = "text-gray-100 ring-gray-300 bg-indigo-600";
-    const sundayColor = "text-red-600 ring-red-600 hover:bg-red-50";
+    const sundayColor = "text-red-500 ring-red-500 hover:bg-red-50";
     const saturdayColor = "text-blue-600 ring-blue-600 hover:bg-blue-50";
     const weekdayColor = "text-gray-900 ring-gray-300 hover:bg-gray-50";
     let color = weekdayColor;
