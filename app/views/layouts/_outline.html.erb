@@ -2,7 +2,9 @@
   <h2 class="invisible text-xs">サービスの概要</h2>
   <p class="sm:text-center">
     「月・太陽による起潮力（潮汐力）」と「木星との距離」を計算します。
-    <%= link_to "補足説明", about_index_path, class: "link-primary" %><br>
+    <%= link_to about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" do %>
+      <%= tag.span "help", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+    <% end %>
   </p>
   <% if !user_signed_in? %>
     <p class="mt-6 text-center">
