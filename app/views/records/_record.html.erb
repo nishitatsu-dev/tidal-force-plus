@@ -30,12 +30,18 @@
     </div>
     <% if record.id.nil? %>
       <div class="flex flex-none w-record-links pl-0.5 sticky top-0 right-0 justify-start items-center border-t-record">
-        <%= link_to "新規作成", new_record_path(recorded_at: record.recorded_at), data: { turbo_frame: "record_#{extract_date_hour(record)}" }, class: "link-primary" %>
+        <%= link_to new_record_path(recorded_at: record.recorded_at), data: { turbo_frame: "record_#{extract_date_hour(record)}" }, class: "link-primary" do %>
+          <%= tag.span "edit", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+        <% end %>
       </div>
     <% else %>
       <div class="flex flex-none w-record-links pl-0.5 justify-between items-center border-t-record">
-        <%= link_to "編集", edit_record_path(record), data: { turbo_frame: "record_#{extract_date_hour(record)}" }, class: "link-primary" %>
-        <%= link_to "削除", confirm_destroy_record_path(record), data: { turbo_frame: "record_#{extract_date_hour(record)}" }, class: "link-primary" %>
+        <%= link_to edit_record_path(record), data: { turbo_frame: "record_#{extract_date_hour(record)}" }, class: "link-primary" do %>
+          <%= tag.span "edit", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+        <% end %>
+        <%= link_to confirm_destroy_record_path(record), data: { turbo_frame: "record_#{extract_date_hour(record)}" }, class: "link-primary" do %>
+          <%= tag.span "close", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+        <% end %>
       </div>
     <% end %>
   </div>
