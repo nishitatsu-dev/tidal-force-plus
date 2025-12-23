@@ -33,7 +33,9 @@
   <section class="text-center mb-6 sm:mb-10">
     <h2 class="text-lg font-semibold text-blue-900">
       ｢起潮力(垂直方向)｣と｢木星との距離｣
-      <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
+      <%= link_to about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" do %>
+        <%= tag.span "help", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+      <% end %>
     </h2>
     <div id="chart_vertical" class="h-96 w-full">
       <%= render "chart_vertical" %>
@@ -45,7 +47,9 @@
       <summary class="mx-auto max-w-162 cursor-pointer">
         <h2 class="inline text-lg font-semibold text-blue-900">
           起潮力(水平方向) の｢強さ｣と｢方位角｣
-          <%= link_to image_tag("link-help.svg", alt: "補足説明へのリンク"), about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" %>
+          <%= link_to about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" do %>
+            <%= tag.span "help", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+          <% end %>
         </h2>
       </summary>
       <div>
