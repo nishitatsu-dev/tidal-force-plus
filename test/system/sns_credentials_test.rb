@@ -8,6 +8,6 @@ class SnsCredentialsTest < ApplicationSystemTestCase
     assert_difference("User.count", 1) do
       click_on "google_oauth2"
     end
-    assert_selector "p.notice", text: "Google アカウントによる認証に成功しました。"
+    assert_selector "p.notice", text: "Google アカウントでログインしました。"
   end
 end
