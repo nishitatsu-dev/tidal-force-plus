@@ -7,4 +7,12 @@ class HomeTest < ApplicationSystemTestCase
     click_button "グラフ・表・メモを更新"
     assert_table "calcResults"
   end
+
+  test "ホームページからログインできる" do
+    set_omniauth_test_config
+    set_mock_as(users(:alice))
+    visit root_path
+    click_on "google_oauth2"
+    assert_selector "p.notice", text: "Google アカウントでログインしました。"
+  end
 end
