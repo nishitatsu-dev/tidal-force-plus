@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-alice_20251231:
-  recorded_at: 2025-12-31 22:29:40
+alice_record:
+  recorded_at: <%= "#{Date.current} 00:00:00" %>
   column_0: 1.5
   column_1: 1.5
   column_2: 1.5
   column_3: 1.5
   column_4: 1.5
   column_5: 1.5
-  memo: MyString
+  memo: alice's memo
   created_at: 2025-10-24 22:29:40
   updated_at: 2025-10-24 22:29:40
   user: alice

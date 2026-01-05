@@ -1,55 +1,53 @@
 require "application_system_test_case"
 
 class RecordsTest < ApplicationSystemTestCase
-  # setup do
-  #   @record = records(:one)
-  # end
+  test "メモの新規作成" do
+    sign_in_as(users(:alice))
+    click_button "グラフ・表・メモを更新"
+    first('[aria-label="メモを新規作成する"]').click
+    page.has_field?("record[column_0]", type: "number")
 
-  # test "visiting the index" do
-  #   visit records_url
-  #   assert_selector "h1", text: "Records"
-  # end
+    fill_in "record_column_0", with: 0
+    fill_in "record_column_1", with: 1
+    fill_in "record_column_2", with: 2
+    fill_in "record_column_3", with: 3
+    fill_in "record_column_4", with: 4
+    fill_in "record_column_5", with: 5
+    fill_in "memo", with: "晴れのち曇り"
+    click_on "更新"
+    page.has_no_field?("record[column_0]", type: "number")
 
-  # test "should create record" do
-  #   visit records_url
-  #   click_on "New record"
+    assert_text "晴れのち曇り"
+  end
 
-  #   fill_in "Column 0", with: @record.column_0
-  #   fill_in "Column 1", with: @record.column_1
-  #   fill_in "Column 2", with: @record.column_2
-  #   fill_in "Column 3", with: @record.column_3
-  #   fill_in "Column 4", with: @record.column_4
-  #   fill_in "Column 5", with: @record.column_5
-  #   fill_in "Memo", with: @record.memo
-  #   fill_in "Recorded at", with: @record.recorded_at
-  #   click_on "Create Record"
+  test "メモの編集" do
+    sign_in_as(users(:alice))
+    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
+    fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
+    click_button "グラフ・表・メモを更新"
+    page.has_text?("alice's memo")
 
-  #   assert_text "Record was successfully created"
-  #   click_on "Back"
-  # end
+    first('[aria-label="メモを編集する"]').click
+    page.has_field?("record[column_0]", type: "number")
+    fill_in "memo", with: "雨"
+    click_on "更新"
+    page.has_no_field?("record[column_0]", type: "number")
 
-  # test "should update Record" do
-  #   visit record_url(@record)
-  #   click_on "Edit this record", match: :first
+    assert_text "雨"
+  end
 
-  #   fill_in "Column 0", with: @record.column_0
-  #   fill_in "Column 1", with: @record.column_1
-  #   fill_in "Column 2", with: @record.column_2
-  #   fill_in "Column 3", with: @record.column_3
-  #   fill_in "Column 4", with: @record.column_4
-  #   fill_in "Column 5", with: @record.column_5
-  #   fill_in "Memo", with: @record.memo
-  #   fill_in "Recorded at", with: @record.recorded_at.to_s
-  #   click_on "Update Record"
+  test "メモの削除" do
+    sign_in_as(users(:alice))
+    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
+    fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
+    click_button "グラフ・表・メモを更新"
+    assert_text "alice's memo"
 
-  #   assert_text "Record was successfully updated"
-  #   click_on "Back"
-  # end
+    first('[aria-label="メモを削除する"]').click
+    page.has_text?("本当に削除しますか？")
+    click_on "OK"
+    page.has_no_text?("本当に削除しますか？")
 
-  # test "should destroy Record" do
-  #   visit record_url(@record)
-  #   accept_confirm { click_on "Destroy this record", match: :first }
-
-  #   assert_text "Record was successfully destroyed"
-  # end
+    assert_no_text "alice's memo"
+  end
 end
