@@ -26,4 +26,14 @@ class Users::OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
     assert_includes flash[:notice], "ログアウトしました。"
   end
+
+  test "アカウント削除" do
+    set_mock_as(users(:alice))
+    get user_google_oauth2_omniauth_callback_path
+    assert_includes flash[:notice], "Google アカウントでログインしました。"
+
+    delete user_registration_path
+    assert_redirected_to root_path
+    assert_includes flash[:notice], "アカウントを削除しました。"
+  end
 end
