@@ -5,13 +5,6 @@ module SignInHelper
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
   end
 
-  def sign_in_as(user)
-    set_omniauth_test_config
-    set_mock_as(user)
-    visit new_user_session_path
-    click_on "google_oauth2"
-  end
-
   def set_mock_as(user)
     OmniAuth.config.add_mock(
       user.sns_credentials.find_by(provider: "google_oauth2").provider,
@@ -30,5 +23,13 @@ module SignInHelper
         email: "new-user@example.com"
       }
     })
+  end
+
+  # サインインページ経由のサインイン（システムテスト用）
+  def sign_in_as(user)
+    set_omniauth_test_config
+    set_mock_as(user)
+    visit new_user_session_path
+    click_on "google_oauth2"
   end
 end
