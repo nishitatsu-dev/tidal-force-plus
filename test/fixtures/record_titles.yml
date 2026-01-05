@@ -1,8 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+alice_0:
+  column_number: 0
+  title: レタス
+  created_at: 2025-10-24 22:29:40
+  updated_at: 2025-10-24 22:29:40
+  user: alice
+
 alice_1:
   column_number: 1
-  title: MyString
+  title: オクラ
   created_at: 2025-10-24 22:29:40
   updated_at: 2025-10-24 22:29:40
   user: alice
