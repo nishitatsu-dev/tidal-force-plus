@@ -3,16 +3,16 @@
     <% if record_title.id.nil? %>
       <div class="flex w-18.5 justify-center">
         <%= link_to new_record_title_path(column_number: record_title.column_number), data: { turbo_frame: "record_title_#{record_title.column_number}" }, class: "link-primary" do %>
-          <%= tag.span "edit", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+          <span class="material-symbols-outlined" aria-label="タイトルを初期値から変更する" style="font-size:1.25rem;">edit</span>
         <% end %>
       </div>
     <% else %>
       <div class="flex w-18.5 justify-around">
         <%= link_to edit_record_title_path(record_title), data: { turbo_frame: "record_title_#{record_title.column_number}" }, class: "link-primary" do %>
-          <%= tag.span "edit", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+          <span class="material-symbols-outlined" aria-label="タイトルを編集する" style="font-size:1.25rem;">edit</span>
         <% end %>
         <%= link_to confirm_destroy_record_title_path(record_title), data: { turbo_frame: "record_title_#{record_title.column_number}" }, class: "link-primary" do %>
-          <%= tag.span "close", class: "material-symbols-outlined", style: "font-size:1.25rem;" %>
+          <span class="material-symbols-outlined" aria-label="タイトルをリセットする" style="font-size:1.25rem;">close</span>
         <% end %>
       </div>
     <% end %>
