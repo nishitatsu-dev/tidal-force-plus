@@ -9,7 +9,10 @@
               <%= record.recorded_at.in_time_zone(session[:timezone]).strftime("%H:%M") %>
             </div>
           </div>
-          <p class="text-xs bg-emerald-200">※数値入力範囲：9999.999 ~ -999.999</p>
+          <p class="text-xs bg-emerald-200">
+            数値を入力できます。<br>
+            ※入力範囲：9999.999 ~ -999.999
+          </p>
         </div>
         <%= form_with model: record do |f| %>
           <div class="mx-2">
