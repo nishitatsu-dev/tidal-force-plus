@@ -17,7 +17,7 @@ class RecordsTest < ApplicationSystemTestCase
   test "タイトルの編集" do
     sign_in_as(users(:alice))
     click_button "グラフ・表・メモを更新"
-    assert_text "レタス"
+    assert_text "alice's title 1"
 
     first('[aria-label="タイトルを編集する"]').click
     has_field?("record_title[title]")
@@ -25,20 +25,20 @@ class RecordsTest < ApplicationSystemTestCase
     click_on "更新"
     has_no_field?("record_title[title]")
 
-    assert_no_text "レタス"
+    assert_no_text "alice's title 1"
     assert_text "ケナフ1"
   end
 
   test "タイトルのリセット" do
     sign_in_as(users(:alice))
     click_button "グラフ・表・メモを更新"
-    assert_text "レタス"
+    assert_text "alice's title 1"
 
     first('[aria-label="タイトルをリセットする"]').click
     has_text?("本当に削除しますか？")
     click_on "OK"
     has_no_text?("本当に削除しますか？")
 
-    assert_no_text "レタス"
+    assert_no_text "alice's title 1"
   end
 end
