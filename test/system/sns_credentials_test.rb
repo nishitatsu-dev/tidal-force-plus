@@ -7,7 +7,7 @@ class SnsCredentialsTest < ApplicationSystemTestCase
     visit new_user_session_path
     assert_difference("User.count", 1) do
       click_on "google_oauth2"
+      assert_selector "p.notice", text: "Google アカウントでログインしました。"
     end
-    assert_selector "p.notice", text: "Google アカウントでログインしました。"
   end
 end
