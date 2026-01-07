@@ -3,7 +3,11 @@ require "application_system_test_case"
 class RecordsTest < ApplicationSystemTestCase
   test "メモの新規作成" do
     sign_in_as(users(:alice))
+    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
+    fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモを更新"
+    has_text?("alice's memo")
+
     first('[aria-label="メモを新規作成する"]').click
     page.has_field?("record[column_0]", type: "number")
 
