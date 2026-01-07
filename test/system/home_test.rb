@@ -16,6 +16,33 @@ class HomeTest < ApplicationSystemTestCase
     assert_selector "p.notice", text: "Google アカウントでログインしました。"
   end
 
+  test "ホームページでグラフの表示枠がある" do
+    visit root_path
+    within "section[aria-label='起潮力(垂直方向)と木星との距離のグラフ']" do
+      assert_selector "div#chart_vertical"
+      assert_selector "canvas"
+    end
+    within "section[aria-label='起潮力(水平方向)の強さと方位角のグラフ']" do
+      find("summary", text: "起潮力(水平方向) の｢強さ｣と｢方位角｣").click
+      assert_selector "div#chart_horizontal"
+      assert_selector "canvas"
+    end
+  end
+
+  test "ホームページで、グラフ・表を更新後に、グラフの表示枠がある" do
+    visit root_path
+    click_button "グラフ・表を更新"
+    within "section[aria-label='起潮力(垂直方向)と木星との距離のグラフ']" do
+      assert_selector "div#chart_vertical"
+      assert_selector "canvas"
+    end
+    within "section[aria-label='起潮力(水平方向)の強さと方位角のグラフ']" do
+      find("summary", text: "起潮力(水平方向) の｢強さ｣と｢方位角｣").click
+      assert_selector "div#chart_horizontal"
+      assert_selector "canvas"
+    end
+  end
+
   test "ページネーションの矢印「⇥」「⇤」選択に連動して結果一覧の表示が切り替わる" do
     visit root_path
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"

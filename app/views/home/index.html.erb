@@ -30,7 +30,7 @@
 </section>
 
 <%= turbo_frame_tag "chart_and_list" do %>
-  <section class="text-center mb-6 sm:mb-10">
+  <section class="text-center mb-6 sm:mb-10" aria-label="起潮力(垂直方向)と木星との距離のグラフ">
     <h2 class="text-lg font-semibold text-blue-900">
       ｢起潮力(垂直方向)｣と｢木星との距離｣
       <%= link_to about_index_path, data: { turbo: false }, class: "inline-flex align-[-3px] link-primary" do %>
@@ -42,7 +42,7 @@
     </div>
   </section>
 
-  <section class="text-center mb-6">
+  <section class="text-center mb-6" aria-label="起潮力(水平方向)の強さと方位角のグラフ">
     <details>
       <summary class="mx-auto max-w-162 cursor-pointer">
         <h2 class="inline text-lg font-semibold text-blue-900">
