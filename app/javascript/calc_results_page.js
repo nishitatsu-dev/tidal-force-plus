@@ -36,8 +36,9 @@ export default class CalcResultsPage {
 
     for (let row = 0; row < HOUR_PER_DAY; row++) {
       const tr = document.createElement("tr");
-      const tdTime = document.createElement("td");
+      tr.setAttribute("data-testid", `${this.#calcDate(pageId)}`);
       tr.className = `${this.#setBgColor(row)}`;
+      const tdTime = document.createElement("td");
       tdTime.className = "h-10";
       tdTime.textContent = TIMES[row];
       tr.appendChild(tdTime);
@@ -48,6 +49,14 @@ export default class CalcResultsPage {
       }
       this.calcResultsTbodyTarget.appendChild(tr);
     }
+  }
+
+  #calcDate(pageId) {
+    const firstDay = new Date(sessionStorage.getItem("firstDay"));
+    const firstDate = firstDay.getDate();
+    const date = new Date(firstDay);
+    date.setDate(firstDate + pageId);
+    return date.getDate();
   }
 
   #setBgColor(row) {
