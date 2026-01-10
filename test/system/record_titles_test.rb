@@ -3,7 +3,7 @@ require "application_system_test_case"
 class RecordsTest < ApplicationSystemTestCase
   test "タイトルの初期値からの変更" do
     sign_in_as(users(:alice))
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
 
     first('[aria-label="タイトルを初期値から変更する"]').click
     has_field?("record_title[title]")
@@ -16,7 +16,7 @@ class RecordsTest < ApplicationSystemTestCase
 
   test "タイトルの編集" do
     sign_in_as(users(:alice))
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     assert_text "alice's title 1"
 
     first('[aria-label="タイトルを編集する"]').click
@@ -31,7 +31,7 @@ class RecordsTest < ApplicationSystemTestCase
 
   test "タイトルのリセット" do
     sign_in_as(users(:alice))
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     assert_text "alice's title 1"
 
     first('[aria-label="タイトルをリセットする"]').click

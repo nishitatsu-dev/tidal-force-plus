@@ -5,7 +5,7 @@ class RecordsTest < ApplicationSystemTestCase
     sign_in_as(users(:alice))
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     has_text?("alice's memo")
 
     first('[aria-label="メモを新規作成する"]').click
@@ -27,7 +27,7 @@ class RecordsTest < ApplicationSystemTestCase
     sign_in_as(users(:alice))
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     has_text?("alice's memo")
 
     first('[aria-label="メモを編集する"]').click
@@ -43,7 +43,7 @@ class RecordsTest < ApplicationSystemTestCase
     sign_in_as(users(:alice))
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     assert_text "alice's memo"
 
     first('[aria-label="メモを削除する"]').click

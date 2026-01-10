@@ -4,7 +4,7 @@ class HomeTest < ApplicationSystemTestCase
   test "ログイン後、初回計算実行前はテーブルを表示しない（日付未設定のメモ欄が表示されるのを防ぐ為）" do
     sign_in_as(users(:alice))
     assert_no_table "calcResults"
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     assert_table "calcResults"
   end
 
@@ -29,9 +29,9 @@ class HomeTest < ApplicationSystemTestCase
     end
   end
 
-  test "ホームページで、グラフ・表を更新後に、グラフの表示枠がある" do
+  test "ホームページで、グラフ・表の表示更新後に、グラフの表示枠がある" do
     visit root_path
-    click_button "グラフ・表を更新"
+    click_button "グラフ・表の表示更新"
     within "section[aria-label='起潮力(垂直方向)と木星との距離のグラフ']" do
       assert_selector "div#chart_vertical"
       assert_selector "canvas"
@@ -47,7 +47,7 @@ class HomeTest < ApplicationSystemTestCase
     visit root_path
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
-    click_button "グラフ・表を更新"
+    click_button "グラフ・表の表示更新"
     assert_selector "tbody tr[data-testid=\"#{Date.current.day}\"]"
 
     find('[aria-label="ページネーション"]').find("li", text: "⇥").click
@@ -60,7 +60,7 @@ class HomeTest < ApplicationSystemTestCase
     visit root_path
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
-    click_button "グラフ・表を更新"
+    click_button "グラフ・表の表示更新"
     assert_selector "tbody tr[data-testid=\"#{Date.current.day}\"]"
 
     find('[aria-label="ページネーション"]').find("li", text: "→").click
@@ -73,7 +73,7 @@ class HomeTest < ApplicationSystemTestCase
     visit root_path
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
-    click_button "グラフ・表を更新"
+    click_button "グラフ・表の表示更新"
     assert_selector "tbody tr[data-testid=\"#{Date.current.day}\"]"
 
     find('[aria-label="ページネーション"]').find("li", text: "#{Date.current.tomorrow.day}").click
@@ -84,7 +84,7 @@ class HomeTest < ApplicationSystemTestCase
     sign_in_as(users(:bob))
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     assert_text "bob's memo today"
 
     find('[aria-label="ページネーション"]').find("li", text: "⇥").click
@@ -97,7 +97,7 @@ class HomeTest < ApplicationSystemTestCase
     sign_in_as(users(:bob))
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     assert_text "bob's memo today"
 
     find('[aria-label="ページネーション"]').find("li", text: "→").click
@@ -110,7 +110,7 @@ class HomeTest < ApplicationSystemTestCase
     sign_in_as(users(:bob))
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
-    click_button "グラフ・表・メモを更新"
+    click_button "グラフ・表・メモの表示更新"
     assert_text "bob's memo today"
 
     find('[aria-label="ページネーション"]').find("li", text: "#{Date.current.tomorrow.day}").click
