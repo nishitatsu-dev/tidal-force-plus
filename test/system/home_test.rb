@@ -12,7 +12,7 @@ class HomeTest < ApplicationSystemTestCase
     set_omniauth_test_config
     set_mock_as(users(:alice))
     visit root_path
-    click_on "google_oauth2"
+    find('[aria-label="google_oauth2のログインボタン"]').click
     assert_selector "p.notice", text: "Google アカウントでログインしました。"
   end
 
