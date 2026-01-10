@@ -47,7 +47,7 @@ class RecordsController < ApplicationController
 
   # DELETE /records/1 or /records/1.json
   def destroy
-    date = @record.recorded_at.in_time_zone(session[:timezone]).strftime("%Y-%m-%d")
+    date = @record.recorded_at.strftime("%Y-%m-%d")
     @record.destroy!
     redirect_to records_path(date: date), notice: "削除に成功しました。", status: :see_other
   end

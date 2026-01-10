@@ -21,14 +21,6 @@ class HomeController < ApplicationController
 
   private
   def set_session
-    session[:timezone] = if !params[:timezone].blank?
-      params[:timezone]
-    elsif !session[:timezone].blank?
-      session[:timezone]
-    else
-      "Asia/Tokyo"
-    end
-
     session[:location] = if !params[:location].blank?
       params[:location]
     elsif !session[:location].blank?

@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
+  before_action :set_session_timezone
+  around_action :set_timezone
+
   def after_sign_in_path_for(resource)
     memo_new_home_path(current_user.id)
   end
@@ -11,6 +14,20 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def set_session_timezone
+    session[:timezone] = if !params[:timezone].blank?
+      params[:timezone]
+    elsif !session[:timezone].blank?
+      session[:timezone]
+    else
+      "Asia/Tokyo"
+    end
+  end
+
+  def set_timezone
+    Time.use_zone(session[:timezone]) { yield }
+  end
+
   def get_db_records(date)
     date_hour_0000 = Time.zone.parse(date + " 00:00")
     date_hour_2300 = Time.zone.parse(date + " 23:00")
@@ -26,11 +43,9 @@ class ApplicationController < ActionController::Base
   end
 
   def make_one_day_records
-    Time.use_zone(session[:timezone]) do
-      date = Date.parse(session[:first_date]).advance(days: session[:page_id]).strftime("%Y-%m-%d")
-      db_records = get_db_records(date)
-      make_hourly_records(date, db_records)
-    end
+    date = Date.parse(session[:first_date]).advance(days: session[:page_id]).strftime("%Y-%m-%d")
+    db_records = get_db_records(date)
+    make_hourly_records(date, db_records)
   end
 
   def make_record_titles
