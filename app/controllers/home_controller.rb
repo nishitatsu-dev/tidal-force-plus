@@ -50,7 +50,7 @@ class HomeController < ApplicationController
     elsif !session[:last_date].blank?
       session[:last_date]
     else
-      Date.tomorrow.strftime("%Y-%m-%d")
+      9.days.from_now.strftime("%Y-%m-%d")
     end
 
     session[:page_id] = params[:page_id].to_i || 0
