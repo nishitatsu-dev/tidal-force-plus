@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!, only: %i[ memo_index memo_new ]
   before_action :set_session
-  before_action :get_calc_conditions, only: %i[ index new memo_index memo_new ]
+  before_action :set_initial_calc_values, only: %i[ index new memo_index memo_new ]
 
   def index
   end
@@ -56,8 +56,8 @@ class HomeController < ApplicationController
     session[:page_id] = params[:page_id].to_i || 0
   end
 
-  def get_calc_conditions
-    @conditions = {
+  def set_initial_calc_values
+    @initial_calc_values = {
       location: session[:location],
       first_date: session[:first_date],
       last_date: session[:last_date]
