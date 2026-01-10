@@ -30,22 +30,32 @@ class HomeController < ApplicationController
     end
 
     session[:first_date] = if !params[:first_date].blank?
+      set_session_lifetime
       params[:first_date]
-    elsif !session[:first_date].blank?
+    elsif !session[:first_date].blank? && get_lifetime_condition
       session[:first_date]
     else
       Date.current.strftime("%Y-%m-%d")
     end
 
     session[:last_date] = if !params[:last_date].blank?
+      set_session_lifetime
       params[:last_date]
-    elsif !session[:last_date].blank?
+    elsif !session[:last_date].blank? && get_lifetime_condition
       session[:last_date]
     else
       9.days.from_now.strftime("%Y-%m-%d")
     end
 
     session[:page_id] = params[:page_id].to_i || 0
+  end
+
+  def set_session_lifetime
+    session[:lifetime] = Time.current.advance(minutes: 240)
+  end
+
+  def get_lifetime_condition
+    session[:lifetime] ? Time.current < session[:lifetime] : false
   end
 
   def set_initial_calc_values
