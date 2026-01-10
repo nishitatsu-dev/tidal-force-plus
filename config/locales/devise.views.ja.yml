@@ -119,6 +119,7 @@ ja:
     shared:
       links:
         back: 戻る
+        home: ホームへ
         didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか？
         didn_t_receive_unlock_instructions: アカウントのロック解除方法のメールを受け取っていませんか？
         forgot_your_password: パスワードを忘れましたか？
