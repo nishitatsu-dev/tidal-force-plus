@@ -43,6 +43,24 @@ class HomeTest < ApplicationSystemTestCase
     end
   end
 
+  test "「表示更新」した後、フォームの入力値がリセットされずに残る" do
+    # 日付は、ある程度時間が経つとリセットするが、ここではテストしない（テスト動作が不安定な為）
+    visit root_path
+    next_locations = calc_next_locations
+    date_after_first_date = calc_tomorrow("first_date")
+    date_after_last_date = calc_tomorrow("last_date")
+
+    select next_locations[:text], from: "location"
+    fill_in "first_date", with: date_after_first_date.strftime("%Y/%m/%d")
+    fill_in "last_date", with: date_after_last_date.strftime("%Y/%m/%d")
+    click_button "グラフ・表の表示更新"
+    assert_table "calcResults"
+
+    assert_field "location", with: next_locations[:value]
+    assert_field "first_date", with: date_after_first_date.strftime("%Y-%m-%d")
+    assert_field "last_date", with: date_after_last_date.strftime("%Y-%m-%d")
+  end
+
   test "ページネーションの矢印「⇥」「⇤」選択に連動して結果一覧の表示が切り替わる" do
     visit root_path
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
