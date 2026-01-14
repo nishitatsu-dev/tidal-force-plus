@@ -31,18 +31,18 @@ class HomeController < ApplicationController
     end
 
     session[:first_date] = if !params[:first_date].blank?
-      set_session_lifetime
+      set_session_timeout
       params[:first_date]
-    elsif !session[:first_date].blank? && get_lifetime_condition
+    elsif !session[:first_date].blank? && get_timeout_condition
       session[:first_date]
     else
       Date.current.strftime("%Y-%m-%d")
     end
 
     session[:last_date] = if !params[:last_date].blank?
-      set_session_lifetime
+      set_session_timeout
       params[:last_date]
-    elsif !session[:last_date].blank? && get_lifetime_condition
+    elsif !session[:last_date].blank? && get_timeout_condition
       session[:last_date]
     else
       ADDITIONAL_DAYS.days.from_now.strftime("%Y-%m-%d")
@@ -51,12 +51,12 @@ class HomeController < ApplicationController
     session[:page_id] = params[:page_id].to_i || 0
   end
 
-  def set_session_lifetime
-    session[:lifetime] = Time.current.advance(minutes: 240)
+  def set_session_timeout
+    session[:timeout] = (Time.current + Rails.configuration.x.session.timeout_in)
   end
 
-  def get_lifetime_condition
-    session[:lifetime] ? Time.current < session[:lifetime] : false
+  def get_timeout_condition
+    session[:timeout] ? Time.current < session[:timeout] : false
   end
 
   def set_initial_calc_values
