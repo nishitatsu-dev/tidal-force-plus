@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  ADDITIONAL_DAYS = 9
   before_action :authenticate_user!, only: %i[ memo_index memo_new ]
   before_action :set_session
   before_action :set_initial_calc_values, only: %i[ index new memo_index memo_new ]
@@ -44,7 +45,7 @@ class HomeController < ApplicationController
     elsif !session[:last_date].blank? && get_lifetime_condition
       session[:last_date]
     else
-      9.days.from_now.strftime("%Y-%m-%d")
+      ADDITIONAL_DAYS.days.from_now.strftime("%Y-%m-%d")
     end
 
     session[:page_id] = params[:page_id].to_i || 0
