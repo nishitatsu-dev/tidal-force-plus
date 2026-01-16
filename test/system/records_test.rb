@@ -6,7 +6,9 @@ class RecordsTest < ApplicationSystemTestCase
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    has_text?("alice's memo")
+    within "#records" do
+      assert_text "alice's memo"
+    end
 
     first('[aria-label="メモを新規作成する"]').click
     has_field?("record[column_0]", type: "number")
@@ -20,7 +22,9 @@ class RecordsTest < ApplicationSystemTestCase
     click_on "更新"
     has_no_field?("record[column_0]", type: "number")
 
-    assert_text "晴れのち曇り"
+    within "#records" do
+      assert_text "晴れのち曇り"
+    end
   end
 
   test "メモの編集" do
@@ -28,7 +32,9 @@ class RecordsTest < ApplicationSystemTestCase
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    has_text?("alice's memo")
+    within "#records" do
+      assert_text "alice's memo"
+    end
 
     first('[aria-label="メモを編集する"]').click
     has_field?("record[column_0]", type: "number")
@@ -36,7 +42,9 @@ class RecordsTest < ApplicationSystemTestCase
     click_on "更新"
     has_no_field?("record[column_0]", type: "number")
 
-    assert_text "雨"
+    within "#records" do
+      assert_text "雨"
+    end
   end
 
   test "メモの削除" do
@@ -44,13 +52,17 @@ class RecordsTest < ApplicationSystemTestCase
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    assert_text "alice's memo"
+    within "#records" do
+      assert_text "alice's memo"
+    end
 
     first('[aria-label="メモを削除する"]').click
     has_text?("本当に削除しますか？")
     click_on "OK"
     has_no_text?("本当に削除しますか？")
 
-    assert_no_text "alice's memo"
+    within "#records" do
+      assert_no_text "alice's memo"
+    end
   end
 end

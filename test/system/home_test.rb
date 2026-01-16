@@ -103,12 +103,18 @@ class HomeTest < ApplicationSystemTestCase
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    assert_text "bob's memo today"
+    within "#records" do
+      assert_text "bob's memo today"
+    end
 
     find('[aria-label="ページネーション"]').find("li", text: "⇥").click
-    assert_text "bob's memo 1week later"
+    within "#records" do
+      assert_text "bob's memo 1week later"
+    end
     find('[aria-label="ページネーション"]').find("li", text: "⇤").click
-    assert_text "bob's memo today"
+    within "#records" do
+      assert_text "bob's memo today"
+    end
   end
 
   test "ページネーションの矢印「→」「←」選択に連動してメモが表示される" do
@@ -116,12 +122,18 @@ class HomeTest < ApplicationSystemTestCase
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    assert_text "bob's memo today"
+    within "#records" do
+      assert_text "bob's memo today"
+    end
 
     find('[aria-label="ページネーション"]').find("li", text: "→").click
-    assert_text "bob's memo tomorrow"
+    within "#records" do
+      assert_text "bob's memo tomorrow"
+    end
     find('[aria-label="ページネーション"]').find("li", text: "←").click
-    assert_text "bob's memo today"
+    within "#records" do
+      assert_text "bob's memo today"
+    end
   end
 
   test "ページネーションの日付選択に連動してメモが表示される" do
@@ -129,9 +141,13 @@ class HomeTest < ApplicationSystemTestCase
     fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
     fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    assert_text "bob's memo today"
+    within "#records" do
+      assert_text "bob's memo today"
+    end
 
     find('[aria-label="ページネーション"]').find("li", text: "#{Date.current.tomorrow.day}").click
-    assert_text "bob's memo tomorrow"
+    within "#records" do
+      assert_text "bob's memo tomorrow"
+    end
   end
 end
