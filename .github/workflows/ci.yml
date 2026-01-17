@@ -75,6 +75,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set locale
+        run: |
+          sudo locale-gen ja_JP.UTF-8
+          sudo update-locale LANG=ja_JP.UTF-8
+
       - name: Run tests
         env:
           RAILS_ENV: test
