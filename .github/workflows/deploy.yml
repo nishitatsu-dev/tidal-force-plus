@@ -1,33 +1,33 @@
-# name: Deploy
+name: Deploy
 
-# on:
-#   workflow_run:
-#     workflows: [CI]
-#     types: [completed]
-#     branches: [main]
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
 
-# jobs:
-  # deploy:
-    # runs-on: ubuntu-latest
-    # steps:
-      # - name: Checkout code
-        # uses: actions/checkout@v6
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # - name: Set up Ruby
-        # uses: ruby/setup-ruby@v1
-        # with:
-          # ruby-version: .ruby-version
-          # bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
 
-      # - name: Setup SSH
-        # uses: webfactory/ssh-agent@v0.9.1
-        # with:
-          # ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # - name: Deploy with Kamal
-        # env:
-        #   KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
-        #   RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        #   GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-        #   GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-        # run: bin/kamal deploy
+      - name: Deploy with Kamal
+        env:
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        run: bin/kamal deploy
