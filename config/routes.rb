@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "home#new"
-  resources :home, only: [ :index, :new ] do
+  resources :home, only: [ :index, :new, :create ] do
     member do
       get :memo_index
       get :memo_new

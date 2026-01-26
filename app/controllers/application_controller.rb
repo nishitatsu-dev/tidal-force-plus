@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
-  before_action :set_session_timezone
+  before_action :ensure_session_timezone
   around_action :set_timezone
 
   def after_sign_in_path_for(resource)
@@ -14,14 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def set_session_timezone
-    session[:timezone] = if !params[:timezone].blank?
-      params[:timezone]
-    elsif !session[:timezone].blank?
-      session[:timezone]
-    else
-      "Asia/Tokyo"
-    end
+  def ensure_session_timezone
+    session[:timezone] ||= "Asia/Tokyo"
   end
 
   def set_timezone
