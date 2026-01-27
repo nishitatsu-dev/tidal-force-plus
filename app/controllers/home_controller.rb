@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   ADDITIONAL_DAYS = 9
   before_action :authenticate_user!, only: %i[ memo_index ]
   before_action :ensure_session, only: %i[ index memo_index ]
-  before_action :refresh_session_date, only: %i[ index memo_index ]
+  before_action :reset_session_date, only: %i[ index memo_index ]
   before_action :set_calc_condition, only: %i[ index memo_index ]
 
   def index
@@ -49,15 +49,15 @@ class HomeController < ApplicationController
     session[:first_date] ||= Date.current.strftime("%Y-%m-%d")
     session[:last_date] ||= ADDITIONAL_DAYS.days.from_now.strftime("%Y-%m-%d")
     session[:page_id] = params[:page_id].to_i || 0
-    set_session_timeout
+    session[:timeout] ||= (Time.current + Rails.configuration.x.session.timeout_in)
   end
 
   def set_session_timeout
     session[:timeout] = (Time.current + Rails.configuration.x.session.timeout_in)
   end
 
-  def refresh_session_date
-    if Time.current > session[:timeout]
+  def reset_session_date
+    if Time.current > Time.zone.parse(session[:timeout])
       session[:first_date] = Date.current.strftime("%Y-%m-%d")
       session[:last_date] = ADDITIONAL_DAYS.days.from_now.strftime("%Y-%m-%d")
     end
