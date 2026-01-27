@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   around_action :set_timezone
 
   def after_sign_in_path_for(resource)
-    memo_new_home_path(current_user.id)
+    memo_index_home_path(current_user.id)
   end
 
   def after_sign_out_path_for(resource)

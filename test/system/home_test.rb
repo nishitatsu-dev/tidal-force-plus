@@ -1,13 +1,6 @@
 require "application_system_test_case"
 
 class HomeTest < ApplicationSystemTestCase
-  test "ログイン後、初回計算実行前はテーブルを表示しない（日付未設定のメモ欄が表示されるのを防ぐ為）" do
-    sign_in_as(users(:alice))
-    assert_no_table "calcResults"
-    click_button "グラフ・表・メモの表示更新"
-    assert_table "calcResults"
-  end
-
   test "ホームページからログインできる" do
     set_omniauth_test_config
     set_mock_as(users(:alice))
@@ -18,20 +11,6 @@ class HomeTest < ApplicationSystemTestCase
 
   test "ホームページでグラフの表示枠がある" do
     visit root_path
-    within "section[aria-label='起潮力(垂直方向)と木星との距離のグラフ']" do
-      assert_selector "div#chart_vertical"
-      assert_selector "canvas"
-    end
-    within "section[aria-label='起潮力(水平方向)の強さと方位角のグラフ']" do
-      find("summary", text: "起潮力(水平方向) の｢強さ｣と｢方位角｣").click
-      assert_selector "div#chart_horizontal"
-      assert_selector "canvas"
-    end
-  end
-
-  test "ホームページで、グラフ・表の表示更新後に、グラフの表示枠がある" do
-    visit root_path
-    click_button "グラフ・表の表示更新"
     within "section[aria-label='起潮力(垂直方向)と木星との距離のグラフ']" do
       assert_selector "div#chart_vertical"
       assert_selector "canvas"

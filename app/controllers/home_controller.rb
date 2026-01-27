@@ -1,24 +1,17 @@
 class HomeController < ApplicationController
   ADDITIONAL_DAYS = 9
-  before_action :authenticate_user!, only: %i[ memo_index memo_new ]
-  before_action :ensure_session, only: %i[ index new memo_index memo_new ]
-  before_action :refresh_session_date, only: %i[ index new memo_index memo_new ]
-  before_action :set_calc_condition, only: %i[ index new memo_index memo_new ]
+  before_action :authenticate_user!, only: %i[ memo_index ]
+  before_action :ensure_session, only: %i[ index memo_index ]
+  before_action :refresh_session_date, only: %i[ index memo_index ]
+  before_action :set_calc_condition, only: %i[ index memo_index ]
 
   def index
-  end
-
-  def new
   end
 
   def memo_index
     @record_titles = make_record_titles
     @records = make_one_day_records
     render :index
-  end
-
-  def memo_new
-    render :new
   end
 
   def create
@@ -33,7 +26,7 @@ class HomeController < ApplicationController
       redirect_to user_signed_in? ? memo_index_home_url(current_user.id) : home_index_url
     else
       set_initial_calc_values
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
