@@ -25,7 +25,7 @@ class HomeController < ApplicationController
       set_session_timeout
       redirect_to user_signed_in? ? memo_index_home_url(current_user.id) : home_index_url
     else
-      set_initial_calc_values
+      set_calc_condition
       render :index, status: :unprocessable_entity
     end
   end
