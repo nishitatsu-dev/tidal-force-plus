@@ -57,7 +57,7 @@ class HomeController < ApplicationController
   end
 
   def reset_session_date
-    if Time.current > Time.zone.parse(session[:timeout])
+    if Time.current > session[:timeout]
       session[:first_date] = Date.current.strftime("%Y-%m-%d")
       session[:last_date] = ADDITIONAL_DAYS.days.from_now.strftime("%Y-%m-%d")
     end
