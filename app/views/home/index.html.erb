@@ -77,7 +77,7 @@
               <div class="grid grid-rows-3 flex-none items-center justify-center border-b-thead">
                 <div class="row-span-2 row-start-2 w-time">time</div>
               </div>
-              <div class="grid grid-cols-6 w-records flex-none gap-0.5 pl-0.5 border-b-thead divide-x-tr">
+              <div class="grid grid-cols-6 w-records flex-none gap-0.5 pl-0.5 border-b-thead divide-x-tr" aria-label="各数値データのタイトル">
                 <%= render partial: "record_titles/record_title", collection: @record_titles %>
               </div>
               <div class="flex">
@@ -87,7 +87,7 @@
                 <div class="w-record-links border-b-thead"></div>
               </div>
             </div>
-            <div>
+            <div aria-label="１時間ごとの数値データとメモ">
               <%= turbo_frame_tag "records" do %>
                 <%= render partial: "records/record", collection: @records %>
               <% end %>

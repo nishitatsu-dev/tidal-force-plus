@@ -4,10 +4,11 @@ class RecordsTest < ApplicationSystemTestCase
   test "タイトルの初期値からの変更" do
     sign_in_as(users(:alice))
     click_button "グラフ・表・メモの表示更新"
+    assert_text "alice's title 1"
 
-    first('[aria-label="タイトルを初期値から変更する"]').click
+    find('[aria-label="各数値データのタイトル"]').first('[aria-label="タイトルを初期値から変更する"]').click
     has_field?("record_title[title]")
-    fill_in "record_title_title", with: "ケナフ2"
+    fill_in "record_title[title]", with: "ケナフ2"
     click_on "更新"
     has_no_field?("record_title[title]")
 
@@ -19,9 +20,9 @@ class RecordsTest < ApplicationSystemTestCase
     click_button "グラフ・表・メモの表示更新"
     assert_text "alice's title 1"
 
-    first('[aria-label="タイトルを編集する"]').click
+    find('[aria-label="各数値データのタイトル"]').first('[aria-label="タイトルを編集する"]').click
     has_field?("record_title[title]")
-    fill_in "record_title_title", with: "ケナフ1"
+    fill_in "record_title[title]", with: "ケナフ1"
     click_on "更新"
     has_no_field?("record_title[title]")
 

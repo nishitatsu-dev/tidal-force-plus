@@ -29,21 +29,21 @@ class HomeTest < ApplicationSystemTestCase
     date_after_first_date = calc_tomorrow("first_date")
     date_after_last_date = calc_tomorrow("last_date")
 
-    select next_locations[:text], from: "location"
-    fill_in "first_date", with: date_after_first_date.strftime("%Y/%m/%d")
-    fill_in "last_date", with: date_after_last_date.strftime("%Y/%m/%d")
+    select next_locations[:text], from: "calc_condition_form[location]"
+    fill_in "calc_condition_form[first_date]", with: date_after_first_date.strftime("%Y/%m/%d")
+    fill_in "calc_condition_form[last_date]", with: date_after_last_date.strftime("%Y/%m/%d")
     click_button "グラフ・表の表示更新"
     assert_table "calcResults"
 
-    assert_field "location", with: next_locations[:value]
-    assert_field "first_date", with: date_after_first_date.strftime("%Y-%m-%d")
-    assert_field "last_date", with: date_after_last_date.strftime("%Y-%m-%d")
+    assert_field "calc_condition_form[location]", with: next_locations[:value]
+    assert_field "calc_condition_form[first_date]", with: date_after_first_date.strftime("%Y-%m-%d")
+    assert_field "calc_condition_form[last_date]", with: date_after_last_date.strftime("%Y-%m-%d")
   end
 
   test "ページネーションの矢印「⇥」「⇤」選択に連動して結果一覧の表示が切り替わる" do
     visit root_path
-    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[last_date]", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
     click_button "グラフ・表の表示更新"
     assert_selector "tbody tr[data-testid=\"#{Date.current.day}\"]"
 
@@ -55,8 +55,7 @@ class HomeTest < ApplicationSystemTestCase
 
   test "ページネーションの矢印「→」「←」選択に連動して結果一覧の表示が切り替わる" do
     visit root_path
-    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表の表示更新"
     assert_selector "tbody tr[data-testid=\"#{Date.current.day}\"]"
 
@@ -68,8 +67,7 @@ class HomeTest < ApplicationSystemTestCase
 
   test "ページネーションの日付選択に連動して結果一覧の表示が切り替わる" do
     visit root_path
-    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表の表示更新"
     assert_selector "tbody tr[data-testid=\"#{Date.current.day}\"]"
 
@@ -79,8 +77,8 @@ class HomeTest < ApplicationSystemTestCase
 
   test "ページネーションの矢印「⇥」「⇤」選択に連動してメモが表示される" do
     sign_in_as(users(:bob))
-    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[last_date]", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
     within "#records" do
       assert_text "bob's memo today"
@@ -98,8 +96,7 @@ class HomeTest < ApplicationSystemTestCase
 
   test "ページネーションの矢印「→」「←」選択に連動してメモが表示される" do
     sign_in_as(users(:bob))
-    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
     within "#records" do
       assert_text "bob's memo today"
@@ -117,8 +114,7 @@ class HomeTest < ApplicationSystemTestCase
 
   test "ページネーションの日付選択に連動してメモが表示される" do
     sign_in_as(users(:bob))
-    fill_in "first_date", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    fill_in "last_date", with: "#{Date.current.advance(weeks: 1).strftime("%Y/%m/%d")}"
+    fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
     within "#records" do
       assert_text "bob's memo today"
