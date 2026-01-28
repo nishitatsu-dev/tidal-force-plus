@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   before_action :ensure_session, only: %i[ index memo_index ]
   before_action :reset_session_date, only: %i[ index memo_index ]
   before_action :set_calc_condition, only: %i[ index memo_index ]
+  before_action :set_session_page_id, only: %i[ index memo_index ]
 
   def index
   end
@@ -48,8 +49,12 @@ class HomeController < ApplicationController
     session[:location] ||= "AKASHI"
     session[:first_date] ||= Date.current.strftime("%Y-%m-%d")
     session[:last_date] ||= ADDITIONAL_DAYS.days.from_now.strftime("%Y-%m-%d")
-    session[:page_id] = params[:page_id].to_i || 0
+    session[:page_id] ||= 0
     session[:timeout] ||= (Time.current + Rails.configuration.x.session.timeout_in)
+  end
+
+  def set_session_page_id
+    session[:page_id] = params[:page_id].to_i || 0
   end
 
   def set_session_timeout
