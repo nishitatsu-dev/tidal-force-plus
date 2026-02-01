@@ -42,10 +42,14 @@ class ApplicationController < ActionController::Base
     make_hourly_records(date, db_records)
   end
 
-  def make_record_titles
-    column_number_indexed_titles = current_user.record_titles.index_by { |title| title.column_number }
+  def get_indexed_record_titles
+    current_user.record_titles.index_by { |title| title.column_number }
+  end
+
+  def complete_record_titles
+    indexed_titles = get_indexed_record_titles
     (0..5).map do |column_number|
-      column_number_indexed_titles[column_number] || RecordTitle.new(column_number: column_number, title: "No.#{column_number + 1}")
+      indexed_titles[column_number] || RecordTitle.new(column_number:, title: "No.#{column_number + 1}")
     end
   end
 end

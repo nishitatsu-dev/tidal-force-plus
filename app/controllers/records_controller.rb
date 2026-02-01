@@ -13,13 +13,13 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
-    @record_titles = make_record_titles
+    @record_titles = complete_record_titles
     @record = Record.new(recorded_at: params[:recorded_at])
   end
 
   # GET /records/1/edit
   def edit
-    @record_titles = make_record_titles
+    @record_titles = complete_record_titles
   end
 
   def confirm_destroy

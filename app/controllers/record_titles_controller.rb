@@ -3,7 +3,7 @@ class RecordTitlesController < ApplicationController
   before_action :set_record_title, only: %i[ show edit confirm_destroy update destroy ]
 
   def index
-    @record_titles = make_record_titles
+    @record_titles = complete_record_titles
   end
 
   def show
