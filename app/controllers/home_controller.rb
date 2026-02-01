@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
 
   def memo_index
-    @record_titles = complete_record_titles
+    @record_titles = RecordTitlesPresenter.new(current_user).complete_record_titles
     @records = complete_one_day_records(set_date)
     render :index
   end

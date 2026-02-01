@@ -37,15 +37,4 @@ class ApplicationController < ActionController::Base
       indexed_records[hour] || Record.new(recorded_at: date_hours[hour])
     end
   end
-
-  def get_indexed_record_titles
-    current_user.record_titles.index_by { |title| title.column_number }
-  end
-
-  def complete_record_titles
-    indexed_titles = get_indexed_record_titles
-    (0..5).map do |column_number|
-      indexed_titles[column_number] || RecordTitle.new(column_number:, title: "No.#{column_number + 1}")
-    end
-  end
 end
