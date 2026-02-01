@@ -25,16 +25,4 @@ class ApplicationController < ActionController::Base
   def set_date
     Date.parse(session[:first_date]).advance(days: session[:page_id]).strftime("%Y-%m-%d")
   end
-
-  def get_indexed_records(date)
-    current_user.records.records_on(date).index_by { |record| record.recorded_at.hour }
-  end
-
-  def complete_one_day_records(date)
-    indexed_records = get_indexed_records(date)
-    date_hours = (0..23).map { |hour| Time.zone.parse(date + " " + format("%02d:00", hour)) }
-    (0..23).map do |hour|
-      indexed_records[hour] || Record.new(recorded_at: date_hours[hour])
-    end
-  end
 end

@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
 
   # GET /records or /records.json
   def index
-    @records = complete_one_day_records(set_date)
+    @records = RecordsPresenter.new(current_user).complete_one_day_records(set_date)
   end
 
   # GET /records/1 or /records/1.json
