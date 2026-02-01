@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
 
   # GET /records or /records.json
   def index
-    @records = make_one_day_records
+    @records = complete_one_day_records(set_date)
   end
 
   # GET /records/1 or /records/1.json

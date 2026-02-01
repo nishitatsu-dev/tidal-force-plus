@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   def memo_index
     @record_titles = complete_record_titles
-    @records = make_one_day_records
+    @records = complete_one_day_records(set_date)
     render :index
   end
 
