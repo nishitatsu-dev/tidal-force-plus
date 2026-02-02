@@ -6,3 +6,24 @@ alice_title_1:
   created_at: <%= 1.months.ago %>
   updated_at: <%= 1.months.ago %>
   user: alice
+
+carol_title_1:
+  column_number: 0
+  title: carol's title 1
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol
+
+carol_title_3:
+  column_number: 2
+  title: carol's title 3
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol
+
+carol_title_6:
+  column_number: 5
+  title: carol's title 6
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol

@@ -45,3 +45,24 @@ bob:
   locked_at:
   created_at: 2025-10-24 22:29:40
   updated_at: 2025-10-24 22:29:40
+
+carol:
+  email: carol@example.com
+  encrypted_password: caroltest
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
+  sign_in_count: 0
+  current_sign_in_at:
+  last_sign_in_at:
+  current_sign_in_ip:
+  last_sign_in_ip:
+  confirmation_token:
+  confirmed_at:
+  confirmation_sent_at:
+  unconfirmed_email:
+  failed_attempts: 0
+  unlock_token:
+  locked_at:
+  created_at: 2025-11-24 22:29:40
+  updated_at: 2025-11-24 22:29:40
