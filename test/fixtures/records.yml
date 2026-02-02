@@ -51,3 +51,42 @@ bob_record_1week_later:
   created_at: <%= 1.months.ago %>
   updated_at: <%= 1.months.ago %>
   user: bob
+
+carol_record_today_00:
+  recorded_at: <%= "#{Date.current} 00:00:00" %>
+  column_0: 0.0
+  column_1: 0.0
+  column_2: 0.0
+  column_3: 0.0
+  column_4: 0.0
+  column_5: 0.0
+  memo: carol's memo 00:00
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol
+
+carol_record_today_12:
+  recorded_at: <%= "#{Date.current} 12:00:00" %>
+  column_0: 12.0
+  column_1: 12.0
+  column_2: 12.0
+  column_3: 12.0
+  column_4: 12.0
+  column_5: 12.0
+  memo: carol's memo 12:00
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol
+
+carol_record_today_23:
+  recorded_at: <%= "#{Date.current} 23:00:00" %>
+  column_0: 23.0
+  column_1: 23.0
+  column_2: 23.0
+  column_3: 23.0
+  column_4: 23.0
+  column_5: 23.0
+  memo: carol's memo 23:00
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol
