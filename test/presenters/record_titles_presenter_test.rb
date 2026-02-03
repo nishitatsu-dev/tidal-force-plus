@@ -6,7 +6,7 @@ class RecordTitlesPresenterTest < ActionDispatch::IntegrationTest
     presenter = RecordTitlesPresenter.new(user)
     complete_titles = presenter.complete_record_titles
 
-    assert_equal RecordTitlesPresenter::COLUMN_NUMBER_RANGE.size, complete_titles.size
+    assert_equal RecordTitle::COLUMN_NUMBER_RANGE.size, complete_titles.size
 
     complete_titles.each_with_index do |title, index|
       if user.record_titles.exists?(column_number: index)

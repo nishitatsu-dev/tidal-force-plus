@@ -4,8 +4,8 @@
     <div class="relative z-20 max-w-sm max-h-screen overflow-y-auto bg-white shadow-lg rounded-md">
       <%= form_with model: record_title do |f| %>
         <div class="flex flex-col gap-2 items-center m-4">
-          <p class="text-xs bg-emerald-200">※最大15文字（改行は1文字に相当）</p>
-          <%= f.text_area :title, maxlength: 15, class: "rounded-md border ring-gray-300 cursor-pointer" %>
+          <%= tag.p "※最大#{RecordTitle::TITLE_MAX_LENGTH}文字（改行は1文字に相当）", class: "text-xs bg-emerald-200" %>
+          <%= f.text_area :title, maxlength: RecordTitle::TITLE_MAX_LENGTH, class: "rounded-md border ring-gray-300 cursor-pointer" %>
           <%= f.hidden_field :column_number %>
         </div>
         <div class="px-4 py-3 bg-gray-50 sm:flex sm:justify-center sm:flex-row-reverse sm:px-6">
