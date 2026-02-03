@@ -11,7 +11,7 @@
           </div>
           <p class="text-xs bg-emerald-200">
             数値を入力できます。<br>
-            ※入力範囲：9999.999 ~ -999.999
+            <%= tag.span "※入力範囲：#{Record::COLUMN_MAX_VALUE} ~ #{Record::COLUMN_MIN_VALUE}" %>
           </p>
         </div>
         <%= form_with model: record do |f| %>
@@ -19,33 +19,33 @@
             <div class="grid grid-rows-6 gap-2 mb-3">
               <div class="grid grid-rows-2">
                 <%= f.label :column_0, "#{@record_titles[0].title} :", class: "w-full truncate text-left" %>
-                <%= f.text_field :column_0, type: "number", step: "0.001", min: "-999.999", max: "9999.999", class: "rounded-md border ring-gray-300 cursor-pointer" %>
+                <%= f.text_field :column_0, type: "number", step: "0.001", min: Record::COLUMN_MIN_VALUE, max: Record::COLUMN_MAX_VALUE, class: "rounded-md border ring-gray-300 cursor-pointer" %>
               </div>
               <div class="grid grid-rows-2">
                 <%= f.label :column_1, "#{@record_titles[1].title} :", class: "w-full truncate text-left" %>
-                <%= f.text_field :column_1, type: "number", step: "0.001", min: "-999.999", max: "9999.999", class: "rounded-md border ring-gray-300 cursor-pointer" %>
+                <%= f.text_field :column_1, type: "number", step: "0.001", min: Record::COLUMN_MIN_VALUE, max: Record::COLUMN_MAX_VALUE, class: "rounded-md border ring-gray-300 cursor-pointer" %>
               </div>
               <div class="grid grid-rows-2">
                 <%= f.label :column_2, "#{@record_titles[2].title} :", class: "w-full truncate text-left" %>
-                <%= f.text_field :column_2, type: "number", step: "0.001", min: "-999.999", max: "9999.999", class: "rounded-md border ring-gray-300 cursor-pointer" %>
+                <%= f.text_field :column_2, type: "number", step: "0.001", min: Record::COLUMN_MIN_VALUE, max: Record::COLUMN_MAX_VALUE, class: "rounded-md border ring-gray-300 cursor-pointer" %>
               </div>
               <div class="grid grid-rows-2">
                 <%= f.label :column_3, "#{@record_titles[3].title} :", class: "w-full truncate text-left" %>
-                <%= f.text_field :column_3, type: "number", step: "0.001", min: "-999.999", max: "9999.999", class: "rounded-md border ring-gray-300 cursor-pointer" %>
+                <%= f.text_field :column_3, type: "number", step: "0.001", min: Record::COLUMN_MIN_VALUE, max: Record::COLUMN_MAX_VALUE, class: "rounded-md border ring-gray-300 cursor-pointer" %>
               </div>
               <div class="grid grid-rows-2">
                 <%= f.label :column_4, "#{@record_titles[4].title} :", class: "w-full truncate text-left" %>
-                <%= f.text_field :column_4, type: "number", step: "0.001", min: "-999.999", max: "9999.999", class: "rounded-md border ring-gray-300 cursor-pointer" %>
+                <%= f.text_field :column_4, type: "number", step: "0.001", min: Record::COLUMN_MIN_VALUE, max: Record::COLUMN_MAX_VALUE, class: "rounded-md border ring-gray-300 cursor-pointer" %>
               </div>
               <div class="grid grid-rows-2">
                 <%= f.label :column_5, "#{@record_titles[5].title} :", class: "w-full truncate text-left" %>
-                <%= f.text_field :column_5, type: "number", step: "0.001", min: "-999.999", max: "9999.999", class: "rounded-md border ring-gray-300 cursor-pointer" %>
+                <%= f.text_field :column_5, type: "number", step: "0.001", min: Record::COLUMN_MIN_VALUE, max: Record::COLUMN_MAX_VALUE, class: "rounded-md border ring-gray-300 cursor-pointer" %>
               </div>
             </div>
             <div class="flex flex-col mb-4">
               <%= f.label :memo, "memo :", class: "self-start" %>
-              <p class="inline-block text-xs bg-emerald-200">※最大150文字（改行は1文字に相当）</p>
-              <%= f.text_area :memo, maxlength: 150, class: "text-wrap overflow-y-auto rounded-md border ring-gray-300 cursor-pointer" %>
+              <%= tag.p "※最大#{Record::MEMO_MAX_LENGTH}文字（改行は1文字に相当）", class: "inline-block text-xs bg-emerald-200" %>
+              <%= f.text_area :memo, maxlength: Record::MEMO_MAX_LENGTH, class: "text-wrap overflow-y-auto rounded-md border ring-gray-300 cursor-pointer" %>
             </div>
             <%= f.hidden_field :recorded_at %>
           </div>
