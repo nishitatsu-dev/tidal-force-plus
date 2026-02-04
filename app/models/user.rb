@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable,
+         :timeoutable,
          :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :sns_credentials, dependent: :destroy
@@ -19,7 +19,6 @@ class User < ApplicationRecord
     unless user
       user = User.create(email: data["email"], password: Devise.friendly_token[0, 20])
     end
-    user.skip_confirmation!
     user
   end
 end
