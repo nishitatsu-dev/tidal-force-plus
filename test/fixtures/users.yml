@@ -19,9 +19,6 @@ alice:
   confirmed_at:
   confirmation_sent_at:
   unconfirmed_email:
-  failed_attempts: 0
-  unlock_token:
-  locked_at:
   created_at: 2025-10-24 22:29:40
   updated_at: 2025-10-24 22:29:40
 
@@ -40,9 +37,6 @@ bob:
   confirmed_at:
   confirmation_sent_at:
   unconfirmed_email:
-  failed_attempts: 0
-  unlock_token:
-  locked_at:
   created_at: 2025-10-24 22:29:40
   updated_at: 2025-10-24 22:29:40
 
@@ -61,8 +55,5 @@ carol:
   confirmed_at:
   confirmation_sent_at:
   unconfirmed_email:
-  failed_attempts: 0
-  unlock_token:
-  locked_at:
   created_at: 2025-11-24 22:29:40
   updated_at: 2025-11-24 22:29:40
