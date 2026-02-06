@@ -48,7 +48,6 @@ class RecordsTest < ApplicationSystemTestCase
   test "メモの削除" do
     sign_in_as(users(:alice))
     fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
-    fill_in "calc_condition_form[last_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
     within "#records" do
       assert_text "alice's memo"
