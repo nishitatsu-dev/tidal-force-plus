@@ -9,8 +9,6 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
   has_many :record_titles, dependent: :destroy
 
-  validates :email, presence: true, uniqueness: true
-
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data["email"]).first
