@@ -23,21 +23,24 @@ class HomeTest < ApplicationSystemTestCase
   end
 
   test "ホームページで各計算結果が表示される" do
-    visit root_path
-    fill_in "calc_condition_form[first_date]", with: "2020/01/11"
-    fill_in "calc_condition_form[last_date]", with: "2020/01/11"
-    click_button "グラフ・表の表示更新"
+    user_timezone = "Asia/Tokyo"
+    Time.use_zone(user_timezone) do
+      visit root_path
+      fill_in "calc_condition_form[first_date]", with: "2020/01/11"
+      fill_in "calc_condition_form[last_date]", with: "2020/01/11"
+      click_button "グラフ・表の表示更新"
 
-    within "table#calcResults tbody tr:first-of-type" do
-      assert_selector "td:nth-of-type(1)", text: "00:00"
-      assert_selector "td:nth-of-type(2)", text: "1.140"
-      assert_selector "td:nth-of-type(3)", text: "0.4927"
-      assert_selector "td:nth-of-type(4)", text: "1.633"
-      assert_selector "td:nth-of-type(5)", text: "6.186"
-      assert_selector "td:nth-of-type(6)", text: "0.3566"
-      assert_selector "td:nth-of-type(7)", text: "0.1721"
-      assert_selector "td:nth-of-type(8)", text: "182.6"
-      assert_selector "td:nth-of-type(9)", text: "172.2"
+      within "table#calcResults tbody tr:first-of-type" do
+        assert_selector "td:nth-of-type(1)", text: "00:00"
+        assert_selector "td:nth-of-type(2)", text: "1.140"
+        assert_selector "td:nth-of-type(3)", text: "0.4927"
+        assert_selector "td:nth-of-type(4)", text: "1.633"
+        assert_selector "td:nth-of-type(5)", text: "6.186"
+        assert_selector "td:nth-of-type(6)", text: "0.3566"
+        assert_selector "td:nth-of-type(7)", text: "0.1721"
+        assert_selector "td:nth-of-type(8)", text: "182.6"
+        assert_selector "td:nth-of-type(9)", text: "172.2"
+      end
     end
   end
 
