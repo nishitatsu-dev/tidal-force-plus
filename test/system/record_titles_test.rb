@@ -36,9 +36,9 @@ class RecordsTest < ApplicationSystemTestCase
     assert_text "alice's title 1"
 
     find('[aria-label="各数値データのタイトル"]').first('[aria-label="タイトルをリセットする"]').click
-    has_text?("本当に削除しますか？")
+    has_text?("本当にリセットしますか？")
     click_on "OK"
-    has_no_text?("本当に削除しますか？")
+    has_no_text?("本当にリセットしますか？")
 
     assert_no_text "alice's title 1"
   end
