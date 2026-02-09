@@ -23,10 +23,10 @@ class HomeTest < ApplicationSystemTestCase
   end
 
   test "ホームページで、各計算結果の表が表示される" do
-      visit root_path
-      click_button "グラフ・表の表示更新"
+    visit root_path
+    click_button "グラフ・表の表示更新"
 
-      within "table#calcResults tbody tr:first-of-type" do
+    within "table#calcResults tbody tr:first-of-type" do
       assert_selector "td", count: 9
     end
   end
