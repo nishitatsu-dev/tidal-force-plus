@@ -5,7 +5,8 @@ class RecordsTest < ApplicationSystemTestCase
     sign_in_as(users(:alice))
     fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    within "#records" do
+
+    within "turbo-frame#records" do
       assert_text "alice's memo"
     end
 
@@ -21,7 +22,7 @@ class RecordsTest < ApplicationSystemTestCase
     click_on "更新"
     has_no_field?("record[column_0]", type: "number")
 
-    within "#records" do
+    within "turbo-frame#records" do
       assert_text "晴れのち曇り"
     end
   end
@@ -30,17 +31,17 @@ class RecordsTest < ApplicationSystemTestCase
     sign_in_as(users(:alice))
     fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    within "#records" do
-      assert_text "alice's memo"
-    end
 
-    find('[aria-label="１時間ごとの数値データとメモ"]').first('[aria-label="メモを編集する"]').click
+    within "turbo-frame#records" do
+      assert_text "alice's memo"
+      first("div", text: "alice's memo").find('span[aria-label="メモを編集する"]').click
+    end
     has_field?("record[column_0]", type: "number")
     fill_in "record[memo]", with: "雨"
     click_on "更新"
     has_no_field?("record[column_0]", type: "number")
 
-    within "#records" do
+    within "turbo-frame#records" do
       assert_text "雨"
     end
   end
@@ -49,16 +50,16 @@ class RecordsTest < ApplicationSystemTestCase
     sign_in_as(users(:alice))
     fill_in "calc_condition_form[first_date]", with: "#{Date.current.strftime("%Y/%m/%d")}"
     click_button "グラフ・表・メモの表示更新"
-    within "#records" do
-      assert_text "alice's memo"
-    end
 
-    find('[aria-label="１時間ごとの数値データとメモ"]').first('[aria-label="メモを削除する"]').click
+    within "turbo-frame#records" do
+      assert_text "alice's memo"
+      first("div", text: "alice's memo").find('span[aria-label="メモを削除する"]').click
+    end
     has_text?("本当に削除しますか？")
     click_on "OK"
     has_no_text?("本当に削除しますか？")
 
-    within "#records" do
+    within "turbo-frame#records" do
       assert_no_text "alice's memo"
     end
   end
