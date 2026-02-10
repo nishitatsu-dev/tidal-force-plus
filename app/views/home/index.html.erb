@@ -15,9 +15,9 @@
               { selected: @calc_condition_form.location }, data: { session_storage_target: "locationSelect" }, class: "mb-2 py-1.5 border rounded-sm" %>
         <p>期間</p>
         <div class="flex justify-between items-center mb-4">
-          <%= f.date_field :first_date, data: { session_storage_target: "firstDateField" }, min: "2020-01-01", max: "2029-12-31", value: @calc_condition_form.first_date, class: "grow-1 max-w-36 py-1.5 border rounded-sm" %>
+          <%= f.date_field :first_date, data: { session_storage_target: "firstDateField" }, min: "2017-01-01", max: "2060-12-31", value: @calc_condition_form.first_date, class: "grow-1 max-w-36 py-1.5 border rounded-sm" %>
           <span class="mx-4">〜</span>
-          <%= f.date_field :last_date, data: { session_storage_target: "lastDateField" }, min: "2020-01-01", max: "2029-12-31", value: @calc_condition_form.last_date, class: "grow-1 max-w-36 py-1.5 border rounded-sm" %>
+          <%= f.date_field :last_date, data: { session_storage_target: "lastDateField" }, min: "2017-01-01", max: "2060-12-31", value: @calc_condition_form.last_date, class: "grow-1 max-w-36 py-1.5 border rounded-sm" %>
         </div>
         <%= f.hidden_field :timezone, data: { timezone_target: "timezoneField" } %>
         <div class="text-center">
@@ -30,6 +30,9 @@
 </section>
 
 <%= turbo_frame_tag "chart_and_list" do %>
+  <div>
+    <%= render "error_messages", calc_condition_form: @calc_condition_form %>
+  </div>
   <section class="text-center mb-6 sm:mb-10" aria-label="起潮力(垂直方向)と木星との距離のグラフ">
     <h2 class="text-lg font-semibold text-blue-900">
       ｢起潮力(垂直方向)｣と｢木星との距離｣
