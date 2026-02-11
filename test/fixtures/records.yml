@@ -90,3 +90,29 @@ carol_record_today_23:
   created_at: <%= 1.months.ago %>
   updated_at: <%= 1.months.ago %>
   user: carol
+
+carol_record_tomorrow_00:
+  recorded_at: <%= "#{Date.current.tomorrow} 00:00:00" %>
+  column_0: 24.0
+  column_1: 24.0
+  column_2: 24.0
+  column_3: 24.0
+  column_4: 24.0
+  column_5: 24.0
+  memo: carol's memo tomorrow 00:00
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol
+
+carol_record_tomorrow_01:
+  recorded_at: <%= "#{Date.current.tomorrow} 01:00:00" %>
+  column_0: 25.0
+  column_1: 25.0
+  column_2: 25.0
+  column_3: 25.0
+  column_4: 25.0
+  column_5: 25.0
+  memo: carol's memo tomorrow 01:00
+  created_at: <%= 1.months.ago %>
+  updated_at: <%= 1.months.ago %>
+  user: carol
