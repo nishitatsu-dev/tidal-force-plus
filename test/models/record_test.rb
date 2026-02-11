@@ -6,7 +6,7 @@ class RecordTest < ActiveSupport::TestCase
     records_today = users(:carol).records.records_on(today)
     records_all = users(:carol).records
 
-    assert_equal records_today.size, 3
-    assert_not_equal records_today.size, records_all.size
+    assert_equal 3, records_today.size
+    assert_not_equal records_all.size, records_today.size
   end
 end
