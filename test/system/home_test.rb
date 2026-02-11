@@ -135,7 +135,7 @@ class HomeTest < ApplicationSystemTestCase
     end
   end
 
-  test "補足説明などのページの「ホームへ」リンクは、ログイン有無に応じたホームページに遷移する" do
+  test "補足説明などのページの「ホームへ」リンクから遷移した場合、ログイン有無に応じた画面表示になる" do
     visit about_index_path
     click_link "ホームへ"
     assert_text "ログインすると、メモ機能が使えます。"

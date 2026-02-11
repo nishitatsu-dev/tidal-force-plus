@@ -13,7 +13,7 @@ class Users::OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.count", 0) do
       get user_google_oauth2_omniauth_callback_path
     end
-    assert_redirected_to memo_index_home_path(users(:alice))
+    assert_redirected_to root_path
     assert_includes flash[:notice], "Google アカウントでログインしました。"
   end
 
