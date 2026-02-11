@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   root "home#index"
-  resources :home, only: [ :index, :create ] do
-    member do
-      get :memo_index
-    end
-  end
+  resources :home, only: [ :index, :create ]
   get "about/index"
   get "privacy/index"
   get "terms/index"

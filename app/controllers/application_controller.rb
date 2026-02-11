@@ -5,14 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :ensure_session_timezone
   around_action :set_timezone
 
-  def after_sign_in_path_for(resource)
-    memo_index_home_path(current_user.id)
-  end
-
-  def after_sign_out_path_for(resource)
-    root_path
-  end
-
   private
   def ensure_session_timezone
     session[:timezone] ||= "Asia/Tokyo"
