@@ -31,11 +31,10 @@ export default class ObserverState {
 
   get getJulianCenturyNumberTs() {
     const dateTimeDetails = this.getDateTimeDetails;
-    let julianCenturyNumberT = 0;
     const julianCenturyNumberTs = [];
     const deltaT = DELTA_T["20170101"] / SEC_PER_HOUR;
     for (let i = 0; i < dateTimeDetails["totalDay"]; i++) {
-      julianCenturyNumberT =
+      const julianCenturyNumberT =
         (dateTimeDetails["firstJulianDay"] + i - 2451545) / 36525; // ユリウス世紀、日の部分
       julianCenturyNumberTs[i] = [];
       for (let j = 0; j < HOUR_PER_DAY; j++) {
@@ -52,8 +51,6 @@ export default class ObserverState {
     const length = julianCenturyNumberTs.length;
     const dateTimeDetails = this.getDateTimeDetails;
     const greenwichSiderealTimes = [];
-    let t = 0;
-    let gst = 0;
     // forループ内の計算について
     // グリニッジ恒星時の計算式：6.697375 + 2400.0513369 * t + 0.0000259 * t * t + UTS
     // （UTS = 地方時 + 時差（日本は−9））
@@ -62,8 +59,8 @@ export default class ObserverState {
     for (let i = 0; i < length; i++) {
       greenwichSiderealTimes[i] = [];
       for (let j = 0; j < HOUR_PER_DAY; j++) {
-        t = julianCenturyNumberTs[i][j];
-        gst =
+        const t = julianCenturyNumberTs[i][j];
+        let gst =
           6.697375 + 0.0000259 * t * t + j + dateTimeDetails["timeZoneOffset"];
         gst = gst + ((((2400.0513369 * t) % 24) + 24) % 24);
         gst = ((gst % 24) + 24) % 24;
@@ -78,13 +75,12 @@ export default class ObserverState {
     const greenwichSiderealTimes = this.#calcGreenwichSiderealTimes();
     const length = greenwichSiderealTimes.length;
     const localHourAngles = [];
-    let localHourAngle = 0;
     const localLon = this.location["longitude"] / 15; // 度→時に単位変換
     // forループ内のequatorialLons（ある瞬時の天体の赤経）も、度→時に単位変換している
     for (let i = 0; i < length; i++) {
       localHourAngles[i] = [];
       for (let j = 0; j < HOUR_PER_DAY; j++) {
-        localHourAngle =
+        let localHourAngle =
           greenwichSiderealTimes[i][j] + localLon - equatorialLons[i][j] / 15;
         localHourAngle = ((localHourAngle % 24) + 24) % 24;
         localHourAngles[i][j] = localHourAngle;

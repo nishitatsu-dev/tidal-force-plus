@@ -33,15 +33,12 @@ export default class DatasetBuilder {
 
   buildXAxisData() {
     let datePeriod = new Date(this.firstDate);
-    let month = "";
-    let date = "";
-    let dateTime = "";
     const xAxisData = [];
     for (let i = 0; i < this.totalDay; i++) {
-      month = (datePeriod.getMonth() + 1).toString();
-      date = (datePeriod.getDate()).toString();
+      const month = (datePeriod.getMonth() + 1).toString();
+      const date = datePeriod.getDate().toString();
       for (let j = 0; j < TIMES.length; j++) {
-        dateTime = `${month}/${date}\n${TIMES[j]}`;
+        const dateTime = `${month}/${date}\n${TIMES[j]}`;
         xAxisData.push(dateTime);
       }
       datePeriod.setDate(datePeriod.getDate() + 1);
