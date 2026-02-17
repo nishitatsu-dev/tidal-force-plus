@@ -66,7 +66,7 @@ export default class CalcResultsPage {
       return "bg-slate-100";
     } else {
       return "bg-white";
-    };
+    }
   }
 
   #getCalcResults() {

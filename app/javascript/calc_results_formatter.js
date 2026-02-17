@@ -11,9 +11,7 @@ export default class CalcResultsFormatter {
   }
 
   formatPrecision(values) {
-    return values.map((value) =>
-      value.toPrecision(this.precision),
-    );
+    return values.map((value) => value.toPrecision(this.precision));
   }
 
   get #multiplier() {

@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 import CalcResultsPage from "calc_results_page";
 
 // Connects to data-controller="calc-results-page"

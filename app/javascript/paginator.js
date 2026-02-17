@@ -18,7 +18,7 @@ export default class Paginator {
       dates.push(date.getDate());
       days.push(date.getDay());
     }
-    return {dates, days};
+    return { dates, days };
   }
 
   getStartIndex() {

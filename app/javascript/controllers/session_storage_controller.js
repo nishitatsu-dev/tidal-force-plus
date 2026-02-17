@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 import * as tidalForcePlus from "tidal_force_plus";
 import DatasetBuilder from "dataset_builder";
 import CalcResultsFormatter from "calc_results_formatter";
@@ -35,7 +35,9 @@ export default class extends Controller {
 
     const moonVerticals = moonTidalForces.verticals.flat();
     const sunVerticals = sunTidalForces.verticals.flat();
-    const moonAndSunVerticals = moonVerticals.map((v, i) => v + sunVerticals[i]);
+    const moonAndSunVerticals = moonVerticals.map(
+      (v, i) => v + sunVerticals[i],
+    );
 
     const moonLateralStrengths = moonTidalForces.laterals.strengths.flat();
     const moonLateralAzimuths = moonTidalForces.laterals.azimuths.flat();
@@ -45,12 +47,30 @@ export default class extends Controller {
     const formatter = new CalcResultsFormatter(6, 4);
     sessionStorage.setItem("moonVerticals", formatter.format(moonVerticals));
     sessionStorage.setItem("sunVerticals", formatter.format(sunVerticals));
-    sessionStorage.setItem("moonAndSunVerticals", formatter.format(moonAndSunVerticals));
-    sessionStorage.setItem("jupiterDistances", formatter.formatPrecision(jupiterDistances.flat()));
+    sessionStorage.setItem(
+      "moonAndSunVerticals",
+      formatter.format(moonAndSunVerticals),
+    );
+    sessionStorage.setItem(
+      "jupiterDistances",
+      formatter.formatPrecision(jupiterDistances.flat()),
+    );
 
-    sessionStorage.setItem("moonLateralStrengths", formatter.format(moonLateralStrengths));
-    sessionStorage.setItem("moonLateralAzimuths", formatter.formatPrecision(moonLateralAzimuths));
-    sessionStorage.setItem("sunLateralStrengths", formatter.format(sunLateralStrengths));
-    sessionStorage.setItem("sunLateralAzimuths", formatter.formatPrecision(sunLateralAzimuths));
+    sessionStorage.setItem(
+      "moonLateralStrengths",
+      formatter.format(moonLateralStrengths),
+    );
+    sessionStorage.setItem(
+      "moonLateralAzimuths",
+      formatter.formatPrecision(moonLateralAzimuths),
+    );
+    sessionStorage.setItem(
+      "sunLateralStrengths",
+      formatter.format(sunLateralStrengths),
+    );
+    sessionStorage.setItem(
+      "sunLateralAzimuths",
+      formatter.formatPrecision(sunLateralAzimuths),
+    );
   }
 }
