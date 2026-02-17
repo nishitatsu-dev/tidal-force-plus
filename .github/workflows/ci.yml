@@ -65,6 +65,9 @@ jobs:
       - name: Lint app/javascript code for consistent style
         run: npx eslint app/javascript
 
+      - name: Check formatting of app/javascript code for consistent style
+        run: npx prettier app/javascript --check
+
   test:
     runs-on: ubuntu-latest
 
