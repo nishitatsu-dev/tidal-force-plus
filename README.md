@@ -34,8 +34,9 @@
    ```
 2. 生成された`tidal-force-plus`ディレクトリで、以下のコマンドを実行する<br>
    `bin/setup`
-3. ローカルサーバーの起動は、以下のコマンドを実行する<br>
-   `bin/dev`
+3. Node.jsのパッケージを使えるように、以下のコマンドを実行する<br>
+   （Node.jsのインストールは、[Node\.js — Node\.js®をダウンロードする](https://nodejs.org/ja/download)を参照）<br>
+   `npm ci`
 
 ### Google OAuth 2.0の設定
 
