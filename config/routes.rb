@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :home, only: [ :index, :create ]
   resource :about, only: [ :show ]
   resource :privacy, only: [ :show ]
-  get "terms/index"
+  resource :terms, only: [ :show ]
   resources :record_titles do
     member do
       get :confirm_destroy
