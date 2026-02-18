@@ -136,13 +136,13 @@ class HomeTest < ApplicationSystemTestCase
   end
 
   test "補足説明などのページの「ホームへ」リンクから遷移した場合、ログイン有無に応じた画面表示になる" do
-    visit about_index_path
+    visit about_path
     click_link "ホームへ"
     assert_text "ログインすると、メモ機能が使えます。"
 
     sign_in_as(users(:alice))
     first('[aria-label="補足説明のページへ"]').click
-    assert_current_path about_index_path
+    assert_current_path about_path
     click_link "ホームへ"
     assert_selector "div[aria-label='各数値データのタイトル'] turbo-frame#record_title_0" do
       assert_text "alice's title 1"

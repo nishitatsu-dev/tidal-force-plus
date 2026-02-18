@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
   resources :home, only: [ :index, :create ]
-  get "about/index"
+  resource :about, only: [ :show ]
   get "privacy/index"
   get "terms/index"
   resources :record_titles do
