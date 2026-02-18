@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "home#index"
   resources :home, only: [ :index, :create ]
   resource :about, only: [ :show ]
-  get "privacy/index"
+  resource :privacy, only: [ :show ]
   get "terms/index"
   resources :record_titles do
     member do
