@@ -69,7 +69,6 @@ group :development do
 
   # not default
   gem "erb_lint", require: false
-  gem "letter_opener_web", "~> 3.0"
 end
 
 group :test do
