@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   ADDITIONAL_DAYS = 9
 
+  skip_before_action :authenticate_user!
+
   def index
     ensure_session
     reset_session_date

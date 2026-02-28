@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :ensure_session_timezone
   around_action :set_timezone
+  before_action :authenticate_user!
 
   private
   def ensure_session_timezone

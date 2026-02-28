@@ -1,5 +1,4 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!, only: %i[ index show new edit confirm_destroy ]
   before_action :set_record, only: %i[ show edit confirm_destroy update destroy ]
 
   # GET /records or /records.json
