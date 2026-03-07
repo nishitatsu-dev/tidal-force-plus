@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_06_083817) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_07_041247) do
   create_table "record_titles", force: :cascade do |t|
     t.integer "column_number", null: false
     t.string "title"
@@ -36,8 +36,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_06_083817) do
   end
 
   create_table "sns_credentials", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
+    t.string "provider", null: false
+    t.string "uid", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
