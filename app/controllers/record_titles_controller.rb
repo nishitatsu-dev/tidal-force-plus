@@ -42,7 +42,7 @@ class RecordTitlesController < ApplicationController
 
   private
   def set_record_title
-    @record_title = RecordTitle.find(params.expect(:id))
+    @record_title = current_user.record_titles.find(params.expect(:id))
   end
 
   def record_title_params
