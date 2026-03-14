@@ -57,7 +57,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # 追加したもの
-  gem "dotenv-rails", "~> 3.1", ">= 3.1.8"
+  gem "dotenv-rails"
 end
 
 group :development do
