@@ -27,7 +27,7 @@ export class Main {
     return new Sun(this.#getObserverState);
   }
 
-  get getMoonTidalForces() {
+  get moonTidalForces() {
     const moon = new Moon(this.#getObserverState);
     const moonTidalForce = new TidalForce(moon);
     const moonVerticalTidalForces = moonTidalForce.calcVerticalTidalForces();
@@ -38,7 +38,7 @@ export class Main {
     };
   }
 
-  get getSunTidalForces() {
+  get sunTidalForces() {
     const sunTidalForce = new TidalForce(this.#getSunInstance);
     const sunVerticalTidalForces = sunTidalForce.calcVerticalTidalForces();
     const sunLateralTidalForces = sunTidalForce.calcLateralTidalForces();
