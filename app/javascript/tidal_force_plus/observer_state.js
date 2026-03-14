@@ -15,7 +15,7 @@ export default class ObserverState {
     this.location = location;
   }
 
-  get getDateTimeDetails() {
+  get dateTimeDetails() {
     const firstDay = new Date(this.firstDate);
     const lastDay = new Date(this.lastDate);
     const firstJulianDay =
@@ -30,7 +30,7 @@ export default class ObserverState {
   }
 
   get getJulianCenturyNumberTs() {
-    const dateTimeDetails = this.getDateTimeDetails;
+    const dateTimeDetails = this.dateTimeDetails;
     const julianCenturyNumberTs = [];
     const deltaT = DELTA_T["20170101"] / SEC_PER_HOUR;
     for (let i = 0; i < dateTimeDetails["totalDay"]; i++) {
@@ -49,7 +49,7 @@ export default class ObserverState {
   #calcGreenwichSiderealTimes() {
     const julianCenturyNumberTs = this.getJulianCenturyNumberTs;
     const length = julianCenturyNumberTs.length;
-    const dateTimeDetails = this.getDateTimeDetails;
+    const dateTimeDetails = this.dateTimeDetails;
     const greenwichSiderealTimes = [];
     // forループ内の計算について
     // グリニッジ恒星時の計算式：6.697375 + 2400.0513369 * t + 0.0000259 * t * t + UTS

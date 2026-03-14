@@ -55,6 +55,6 @@ export class Main {
   }
 
   get totalDay() {
-    return this.#getObserverState.getDateTimeDetails["totalDay"];
+    return this.#getObserverState.dateTimeDetails["totalDay"];
   }
 }
