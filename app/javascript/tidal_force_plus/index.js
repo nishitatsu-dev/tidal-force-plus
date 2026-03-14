@@ -54,7 +54,7 @@ export class Main {
     return jupiterDistances;
   }
 
-  get getTotalDay() {
+  get totalDay() {
     return this.#getObserverState.getDateTimeDetails["totalDay"];
   }
 }

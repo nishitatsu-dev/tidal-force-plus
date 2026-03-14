@@ -18,7 +18,7 @@ export default class extends Controller {
   }
 
   #setBasicParams(main, firstDate, lastDate) {
-    const totalDay = main.getTotalDay;
+    const totalDay = main.totalDay;
     const datasetBuilder = new DatasetBuilder(firstDate, totalDay);
     const xAxisData = datasetBuilder.buildXAxisData();
 
