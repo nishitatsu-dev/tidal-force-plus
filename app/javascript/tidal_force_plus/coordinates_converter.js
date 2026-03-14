@@ -73,8 +73,7 @@ export default class CoordinatesConverter {
   }
 
   convertToHorizontalCoords() {
-    const equatorialLons = this.#convertToEquatorialCoords()["equatorialLons"];
-    const equatorialLats = this.#convertToEquatorialCoords()["equatorialLats"];
+    const { equatorialLons, equatorialLats } = this.#convertToEquatorialCoords();
     const length = equatorialLats.length;
     const localHourAngles =
       this.celestialBody.observerState.calcLocalHourAngles(equatorialLons);
