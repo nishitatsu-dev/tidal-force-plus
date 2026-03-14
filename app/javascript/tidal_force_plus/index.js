@@ -48,7 +48,7 @@ export class Main {
     };
   }
 
-  get getJupiterDistances() {
+  get jupiterDistances() {
     const jupiter = new Jupiter(this.#getObserverState, this.#getSunInstance);
     const jupiterDistances = jupiter.distances;
     return jupiterDistances;

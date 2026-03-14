@@ -31,7 +31,7 @@ export default class extends Controller {
   #setTidalForcePlus(main) {
     const moonTidalForces = main.moonTidalForces;
     const sunTidalForces = main.sunTidalForces;
-    const jupiterDistances = main.getJupiterDistances;
+    const jupiterDistances = main.jupiterDistances;
 
     const moonVerticals = moonTidalForces.verticals.flat();
     const sunVerticals = sunTidalForces.verticals.flat();
