@@ -95,7 +95,7 @@ export default class Sun {
     return distance;
   }
 
-  get getLongitudes() {
+  get longitudes() {
     const julianCenturyNumberTs = this.observerState.getJulianCenturyNumberTs;
     const length = julianCenturyNumberTs.length;
     const longitudes = [];
@@ -108,7 +108,7 @@ export default class Sun {
     return longitudes;
   }
 
-  get getLatitudes() {
+  get latitudes() {
     const julianCenturyNumberTs = this.observerState.getJulianCenturyNumberTs;
     const length = julianCenturyNumberTs.length;
     const latitudes = [];

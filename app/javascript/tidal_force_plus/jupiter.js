@@ -246,11 +246,11 @@ export default class Jupiter {
     );
   }
 
-  get getLongitudes() {
+  get longitudes() {
     return this.#getGeocentricCoords.geoLons;
   }
 
-  get getLatitudes() {
+  get latitudes() {
     return this.#getGeocentricCoords.geoLats;
   }
 

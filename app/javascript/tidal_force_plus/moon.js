@@ -230,7 +230,7 @@ export default class Moon {
     return distance;
   }
 
-  get getLongitudes() {
+  get longitudes() {
     const julianCenturyNumberTs = this.observerState.getJulianCenturyNumberTs;
     const length = julianCenturyNumberTs.length;
     const longitudes = [];
@@ -243,7 +243,7 @@ export default class Moon {
     return longitudes;
   }
 
-  get getLatitudes() {
+  get latitudes() {
     const julianCenturyNumberTs = this.observerState.getJulianCenturyNumberTs;
     const length = julianCenturyNumberTs.length;
     const latitudes = [];

@@ -30,8 +30,8 @@ export default class CoordinatesConverter {
   }
 
   #convertToEquatorialCoords() {
-    const eclipticLons = this.celestialBody.getLongitudes;
-    const eclipticLats = this.celestialBody.getLatitudes;
+    const eclipticLons = this.celestialBody.longitudes;
+    const eclipticLats = this.celestialBody.latitudes;
     const length = eclipticLats.length;
     const ts = this.celestialBody.observerState.getJulianCenturyNumberTs;
     const equatorialLons = [];
