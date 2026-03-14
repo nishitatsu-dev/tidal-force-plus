@@ -254,7 +254,7 @@ export default class Jupiter {
     return this.#getGeocentricCoords.geoLats;
   }
 
-  get getDistances() {
+  get distances() {
     // 単位は天文単位距離。メートルで表すには AU をかける。
     return this.#getGeocentricCoords.geoDists;
   }

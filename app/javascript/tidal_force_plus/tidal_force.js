@@ -26,7 +26,7 @@ export default class TidalForce {
 
   get #getTidalForces() {
     const altitudes = this.#getHorizontalCoords["altitudes"];
-    const distances = this.celestialBody.getDistances;
+    const distances = this.celestialBody.distances;
     const length = distances.length;
     const verticals = [];
     const laterals = [];

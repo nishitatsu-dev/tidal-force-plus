@@ -33,7 +33,7 @@ export default class OriginConverter {
   convertToGeocentricCoords(helioLons, helioLats, helioDists) {
     const sunLons = this.sun.longitudes;
     const sunLats = this.sun.latitudes;
-    const sunDists = this.sun.getDistances;
+    const sunDists = this.sun.distances;
     const length = sunLats.length;
     const geoLons = [];
     const geoLats = [];

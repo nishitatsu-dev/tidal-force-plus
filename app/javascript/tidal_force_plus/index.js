@@ -50,7 +50,7 @@ export class Main {
 
   get getJupiterDistances() {
     const jupiter = new Jupiter(this.#getObserverState, this.#getSunInstance);
-    const jupiterDistances = jupiter.getDistances;
+    const jupiterDistances = jupiter.distances;
     return jupiterDistances;
   }
 
