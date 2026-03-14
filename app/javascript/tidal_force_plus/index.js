@@ -13,7 +13,7 @@ export class Main {
     this.location = location;
   }
 
-  get #getObserverState() {
+  get #observerState() {
     const location = LOCATION[this.location];
     const observerState = new ObserverState(
       this.first_date,
@@ -23,12 +23,12 @@ export class Main {
     return observerState;
   }
 
-  get #getSunInstance() {
-    return new Sun(this.#getObserverState);
+  get #sunInstance() {
+    return new Sun(this.#observerState);
   }
 
   get moonTidalForces() {
-    const moon = new Moon(this.#getObserverState);
+    const moon = new Moon(this.#observerState);
     const moonTidalForce = new TidalForce(moon);
     const moonVerticalTidalForces = moonTidalForce.calcVerticalTidalForces();
     const moonLateralTidalForces = moonTidalForce.calcLateralTidalForces();
@@ -39,7 +39,7 @@ export class Main {
   }
 
   get sunTidalForces() {
-    const sunTidalForce = new TidalForce(this.#getSunInstance);
+    const sunTidalForce = new TidalForce(this.#sunInstance);
     const sunVerticalTidalForces = sunTidalForce.calcVerticalTidalForces();
     const sunLateralTidalForces = sunTidalForce.calcLateralTidalForces();
     return {
@@ -49,12 +49,12 @@ export class Main {
   }
 
   get jupiterDistances() {
-    const jupiter = new Jupiter(this.#getObserverState, this.#getSunInstance);
+    const jupiter = new Jupiter(this.#observerState, this.#sunInstance);
     const jupiterDistances = jupiter.distances;
     return jupiterDistances;
   }
 
   get totalDay() {
-    return this.#getObserverState.dateTimeDetails["totalDay"];
+    return this.#observerState.dateTimeDetails["totalDay"];
   }
 }

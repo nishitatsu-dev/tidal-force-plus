@@ -237,7 +237,7 @@ export default class Jupiter {
     return helioDists;
   }
 
-  get #getGeocentricCoords() {
+  get #geocentricCoords() {
     const originConverter = new OriginConverter(this.sun);
     return originConverter.convertToGeocentricCoords(
       this.#calcHelioLons(),
@@ -247,15 +247,15 @@ export default class Jupiter {
   }
 
   get longitudes() {
-    return this.#getGeocentricCoords.geoLons;
+    return this.#geocentricCoords.geoLons;
   }
 
   get latitudes() {
-    return this.#getGeocentricCoords.geoLats;
+    return this.#geocentricCoords.geoLats;
   }
 
   get distances() {
     // 単位は天文単位距離。メートルで表すには AU をかける。
-    return this.#getGeocentricCoords.geoDists;
+    return this.#geocentricCoords.geoDists;
   }
 }

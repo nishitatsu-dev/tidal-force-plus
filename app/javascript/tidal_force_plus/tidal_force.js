@@ -7,7 +7,7 @@ export default class TidalForce {
     this.celestialBody = celestialBody;
   }
 
-  get #getHorizontalCoords() {
+  get #horizontalCoords() {
     const coordsConverter = new CoordinatesConverter(this.celestialBody);
     const horizontalCoords = coordsConverter.convertToHorizontalCoords();
     return horizontalCoords;
@@ -24,8 +24,8 @@ export default class TidalForce {
     return [vertical, lateral];
   }
 
-  get #getTidalForces() {
-    const altitudes = this.#getHorizontalCoords["altitudes"];
+  get #tidalForces() {
+    const altitudes = this.#horizontalCoords["altitudes"];
     const distances = this.celestialBody.distances;
     const length = distances.length;
     const verticals = [];
@@ -44,12 +44,12 @@ export default class TidalForce {
   }
 
   calcVerticalTidalForces() {
-    return this.#getTidalForces["verticals"];
+    return this.#tidalForces["verticals"];
   }
 
   calcLateralTidalForces() {
-    const laterals = this.#getTidalForces["laterals"];
-    const celestialBodyAzimuths = this.#getHorizontalCoords["azimuths"];
+    const laterals = this.#tidalForces["laterals"];
+    const celestialBodyAzimuths = this.#horizontalCoords["azimuths"];
     const length = laterals.length;
     const strengths = [];
     const azimuths = [];
