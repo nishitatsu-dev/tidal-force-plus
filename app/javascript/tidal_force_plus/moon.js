@@ -270,7 +270,7 @@ export default class Moon {
     return distances;
   }
 
-  get getCoefficientTidalForce() {
+  get coefficientTidalForce() {
     // TidalForce計算用の係数
     // ・元の計算式は以下で、returnの式は、EARTH_RADIUSで約分したもの
     //   G * MASS_MOON * EARTH_RADIUS / (EARTH_RADIUS * EARTH_RADIUS * EARTH_RADIUS);

@@ -135,7 +135,7 @@ export default class Sun {
     return distances;
   }
 
-  get getCoefficientTidalForce() {
+  get coefficientTidalForce() {
     // TidalForce計算用の係数
     // ・tidalForceの算出時に距離の３乗で割るので、距離の単位変換をここで行っている
     // ・単位質量あたり（* 1 は省略）

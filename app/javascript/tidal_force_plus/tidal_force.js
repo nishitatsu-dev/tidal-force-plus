@@ -15,7 +15,7 @@ export default class TidalForce {
 
   #calcTidalForce(altitude, distance) {
     const tidalForce =
-      this.celestialBody.getCoefficientTidalForce /
+      this.celestialBody.coefficientTidalForce /
       (distance * distance * distance);
     const cos2A = Math.cos((altitude * Math.PI) / 90);
     const sin2A = Math.sin((altitude * Math.PI) / 90);
