@@ -10,45 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_07_041247) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_14_190903) do
   create_table "record_titles", force: :cascade do |t|
     t.integer "column_number", null: false
-    t.string "title"
     t.datetime "created_at", null: false
+    t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_record_titles_on_user_id"
   end
 
   create_table "records", force: :cascade do |t|
-    t.datetime "recorded_at", null: false
     t.float "column_0"
     t.float "column_1"
     t.float "column_2"
     t.float "column_3"
     t.float "column_4"
     t.float "column_5"
-    t.string "memo"
     t.datetime "created_at", null: false
+    t.string "memo"
+    t.datetime "recorded_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "sns_credentials", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "provider", null: false
     t.string "uid", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["provider", "uid"], name: "index_sns_credentials_on_provider_and_uid", unique: true
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
