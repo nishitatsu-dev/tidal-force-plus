@@ -40,7 +40,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # 追加したもの
-gem "devise", "~> 4.9"
+gem "devise"
 gem "devise-i18n"
 gem "meta-tags"
 gem "omniauth-google-oauth2"
