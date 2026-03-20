@@ -103,6 +103,7 @@ jobs:
           RAILS_ENV: test
           LANG: ja_JP.UTF-8
           LC_ALL: ja_JP.UTF-8
+          TZ: Asia/Tokyo
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test test:system
 
