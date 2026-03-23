@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   ADDITIONAL_DAYS = 9
 
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: %i[ index create ]
 
   def index
     ensure_session
