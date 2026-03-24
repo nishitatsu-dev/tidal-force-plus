@@ -1,9 +1,10 @@
 <script type="module">
   import * as echarts from 'echarts';
 
-  var chartDom = document.getElementById('chart_horizontal');
-  var myChart = echarts.init(chartDom);
-  var option;
+  // 以下、Apache EChartsのサンプル（Gradient Stacked Area Chart）のコードをベースにしている
+  const chartDom = document.getElementById('chart_horizontal');
+  const myChart = echarts.init(chartDom);
+  let option;
 
   let xAxisData = [];
   let moonLateralStrengths = [];
@@ -157,6 +158,6 @@
   ]
 };
 
-option && myChart.setOption(option);
+myChart.setOption(option);
 
 </script>

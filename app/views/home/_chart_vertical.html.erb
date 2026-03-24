@@ -1,9 +1,10 @@
 <script type="module">
   import * as echarts from "echarts";
 
-  var chartDom = document.getElementById('chart_vertical');
-  var myChart = echarts.init(chartDom);
-  var option;
+  // 以下、Apache EChartsのサンプル（Gradient Stacked Area Chart）のコードをベースにしている
+  const chartDom = document.getElementById('chart_vertical');
+  const myChart = echarts.init(chartDom);
+  let option;
 
   let moonVerticals = [];
   let sunVerticals = [];
@@ -161,6 +162,6 @@
     ]
   };
 
-  option && myChart.setOption(option);
+  myChart.setOption(option);
 
 </script>
