@@ -76,7 +76,7 @@
 
 ### バックエンド
 
-- Ruby on Rails 8.0
+- Ruby on Rails 8.1
 - Ruby 3.4
 
 ### フロントエンド
